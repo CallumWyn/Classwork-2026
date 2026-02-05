@@ -1,0 +1,9 @@
+﻿  Variables Exercises.cpp
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(19,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(47,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(52,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(53,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(54,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(55,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\Variables Exercises\Variables Exercises.cpp(56,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Variables Exercises.vcxproj -> C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Variables\x64\Debug\Variables Exercises.exe
