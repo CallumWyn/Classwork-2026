@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Functions\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{377AF4E4-518D-4AD4-AAF8-DC7D174E3644}|Exercises - Functions\\Exercises - Functions.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Functions\\Exercises - Functions\\Exercises - Functions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{377AF4E4-518D-4AD4-AAF8-DC7D174E3644}|Exercises - Functions\\Exercises - Functions.vcxproj|solutionrelative:Exercises - Functions\\Exercises - Functions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Exercises - Functions.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Functions\\Exercises - Functions\\Exercises - Functions.cpp",
+              "RelativeDocumentMoniker": "Exercises - Functions\\Exercises - Functions.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Functions\\Exercises - Functions\\Exercises - Functions.cpp",
+              "RelativeToolTip": "Exercises - Functions\\Exercises - Functions.cpp",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAFEBAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-05T02:54:28.406Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
