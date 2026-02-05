@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\SubmarineGame\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1103F0A2-D2FE-41AD-80C7-9A2E960F1817}|SubmarineGame\\SubmarineGame.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\SubmarineGame\\SubmarineGame\\SubmarineGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1103F0A2-D2FE-41AD-80C7-9A2E960F1817}|SubmarineGame\\SubmarineGame.vcxproj|solutionrelative:SubmarineGame\\SubmarineGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SubmarineGame.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\SubmarineGame\\SubmarineGame\\SubmarineGame.cpp",
+              "RelativeDocumentMoniker": "SubmarineGame\\SubmarineGame.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\SubmarineGame\\SubmarineGame\\SubmarineGame.cpp",
+              "RelativeToolTip": "SubmarineGame\\SubmarineGame.cpp",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAIgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-04T23:33:53.61Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

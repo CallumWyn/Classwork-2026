@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Inventory System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29351540-EF03-4645-83E2-19B8DAB790DA}|cpp_basics_02\\cpp_basics_02.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Inventory System\\cpp_basics_02\\cpp_basics_02.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{29351540-EF03-4645-83E2-19B8DAB790DA}|cpp_basics_02\\cpp_basics_02.vcxproj|solutionrelative:cpp_basics_02\\cpp_basics_02.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "cpp_basics_02.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Inventory System\\cpp_basics_02\\cpp_basics_02.cpp",
+              "RelativeDocumentMoniker": "cpp_basics_02\\cpp_basics_02.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Inventory System\\cpp_basics_02\\cpp_basics_02.cpp",
+              "RelativeToolTip": "cpp_basics_02\\cpp_basics_02.cpp",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAGYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-04T03:43:04.189Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
