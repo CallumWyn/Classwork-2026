@@ -1,0 +1,8 @@
+﻿  Exercises - Conditional Statements.cpp
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\Exercises - Conditional Statements\Exercises - Conditional Statements.cpp(74,14): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\Exercises - Conditional Statements\Exercises - Conditional Statements.cpp(90,35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\Exercises - Conditional Statements\Exercises - Conditional Statements.cpp(91,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\Exercises - Conditional Statements\Exercises - Conditional Statements.cpp(92,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\Exercises - Conditional Statements\Exercises - Conditional Statements.cpp(93,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\Exercises - Conditional Statements\Exercises - Conditional Statements.cpp(94,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Exercises - Conditional Statements.vcxproj -> C:\Users\s220460\Desktop\Classwork 2026\Classwork-2026\Exercises - Conditional Statements\x64\Debug\Exercises - Conditional Statements.exe

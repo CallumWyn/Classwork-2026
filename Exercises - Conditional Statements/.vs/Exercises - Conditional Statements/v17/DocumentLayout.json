@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Conditional Statements\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F6E91BD7-3A4B-4B0F-BDB6-D64361CB920A}|Exercises - Conditional Statements\\Exercises - Conditional Statements.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Conditional Statements\\Exercises - Conditional Statements\\Exercises - Conditional Statements.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F6E91BD7-3A4B-4B0F-BDB6-D64361CB920A}|Exercises - Conditional Statements\\Exercises - Conditional Statements.vcxproj|solutionrelative:Exercises - Conditional Statements\\Exercises - Conditional Statements.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Exercises - Conditional Statements.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Conditional Statements\\Exercises - Conditional Statements\\Exercises - Conditional Statements.cpp",
+              "RelativeDocumentMoniker": "Exercises - Conditional Statements\\Exercises - Conditional Statements.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Conditional Statements\\Exercises - Conditional Statements\\Exercises - Conditional Statements.cpp",
+              "RelativeToolTip": "Exercises - Conditional Statements\\Exercises - Conditional Statements.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-06T03:09:00.848Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

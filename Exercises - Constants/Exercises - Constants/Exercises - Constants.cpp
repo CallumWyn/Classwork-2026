@@ -19,6 +19,9 @@ int main()
         calling();
     }
 
+    // Exercise 4
+    // Write a program that asks the user for a number of gallons and then outputs the equivalent number of litres. 
+    // There are 3.78533 litres in a gallon. Use a declared constant to store that value.
     float litres;
     cout << "\n\n\nHow many litres would you like to convert to gallons?" << endl;
     cin >> litres;

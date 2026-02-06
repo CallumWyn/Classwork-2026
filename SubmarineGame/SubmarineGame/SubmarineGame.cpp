@@ -15,8 +15,6 @@ bool enemyBLiving = true;
 bool enemyCLiving = true;
 bool enemyDLiving = true;
 
-
-
 int enemyAPos;
 int enemyBPos;
 int enemyCPos;
@@ -41,7 +39,7 @@ int priorityTargetPos;
 
 int main()
 {
-    srand(time(0));
+    srand(time(NULL));
 
     
 
@@ -94,27 +92,34 @@ int main()
             }
 
             int rotationAmount;
+            string rotationAmountString;
             string rotationDirection;
 
-
+            // Asks the player how much they want to rotate and in what direction
             cout << "\nHow many degrees would you like to move? (0-360)" << endl;
             cin >> rotationAmount;
             cout << "Which direction would you like to rotate? (Left/Right) (Capitalization is important)" << endl;
             cin >> rotationDirection;
+            
 
             // Resets if the player enters a number above 360
-            if (rotationAmount > 360) {
-                cout << "Invalid Input. Put in a valid degree (0-360) and direction (Left/Right)\n\n" << endl;
+            if (rotationAmount > 360 || rotationAmount < 0 || (rotationDirection != "Left" && rotationDirection != "Right")) {
+                cout << "\nInvalid Input. Put in a valid degree (0-360) and direction (Left/Right)\n\n" << endl;
                 continue;
-            }
-            else if (rotationDirection != "Left") {
-                if (rotationDirection != "Right") {
-                    cout << "Invalid Input. Put in a valid degree (0-360) and direction (Left/Right)\n\n" << endl;
-                    continue;
-                }
+                // cout << "\n\n" << rotationAmount << "\n\n";
             }
 
+
+            //else if (rotationDirection != "Left") {
+            //    if (rotationDirection != "Right") {
+            //        cout << "\nInvalid Input. Put in a valid degree (0-360) and direction (Left/Right)\n\n" << endl;
+            //        continue;
+            //    }
+            //}
+
+
             //AjustPlayerPosition(rotationAmount, rotationDirection);
+
 
             // If the enemy is still alive, it runs the AjustPlayerPosition function
             if (enemyALiving) { enemyAPos = AjustPlayerPosition(rotationAmount, rotationDirection, enemyAPos); }
@@ -136,16 +141,16 @@ int main()
             // Checks if the distance to the enemy is 0, and if the enemy is the priority target, kills it
             switch (priorityEnemy) {
             case(lowestdistance::EnemyA):
-                if (GetEnemyLocation(enemyAPos) == 0) { cout << "You found an Enemy!\n" << endl; enemyALiving = false; priorityAlive = false; }
+                if (GetEnemyLocation(enemyAPos) == 0) { cout << "You found the first Enemy!\n" << endl; enemyALiving = false; priorityAlive = false; }
                 break;
             case(lowestdistance::EnemyB):
-                if (GetEnemyLocation(enemyBPos) == 0) { cout << "You found an Enemy!\n" << endl; enemyBLiving = false; priorityAlive = false;}
+                if (GetEnemyLocation(enemyBPos) == 0) { cout << "You found the second Enemy!\n" << endl; enemyBLiving = false; priorityAlive = false;}
                 break;
             case(lowestdistance::EnemyC):
-                if (GetEnemyLocation(enemyCPos) == 0) { cout << "You found an Enemy!\n" << endl; enemyCLiving = false; priorityAlive = false;}
+                if (GetEnemyLocation(enemyCPos) == 0) { cout << "You found the third Enemy!\n" << endl; enemyCLiving = false; priorityAlive = false;}
                 break;
             case(lowestdistance::EnemyD):
-                if (GetEnemyLocation(enemyDPos) == 0) { cout << "You found an Enemy!\n" << endl; enemyDLiving = false; priorityAlive = false;}
+                if (GetEnemyLocation(enemyDPos) == 0) { cout << "You found the forth Enemy!\n" << endl; enemyDLiving = false; priorityAlive = false;}
                 break;
             }
 
