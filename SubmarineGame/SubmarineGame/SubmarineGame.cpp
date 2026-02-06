@@ -78,16 +78,16 @@ int main()
             // Outputs the priority target
             switch (priorityEnemy) {
             case(lowestdistance::EnemyA):
-                cout << "\nThe Priority Enemy is Enemy A" << endl;
+                cout << "\nThe Priority Enemy is the First Enemy" << endl;
                 break;
             case(lowestdistance::EnemyB):
-                cout << "\nThe Priority Enemy is Enemy B" << endl;
+                cout << "\nThe Priority Enemy is the Second Enemy" << endl;
                 break;
             case(lowestdistance::EnemyC):
-                cout << "\nThe Priority Enemy is Enemy C" << endl;
+                cout << "\nThe Priority Enemy is the Third Enemy" << endl;
                 break;
             case(lowestdistance::EnemyD):
-                cout << "\nThe Priority Enemy is Enemy D" << endl;
+                cout << "\nThe Priority Enemy is the Forth Enemy" << endl;
                 break;
             }
 
