@@ -199,9 +199,9 @@ int main(){
 
 		}
 
-
+		// Only happens when the user doesn't type in a valid weapon or item
 		else {
-			cout << "Invalid Input. Weapon is not listed" << endl;
+			cout << "Invalid Input. Item is not listed" << endl;
 			continue;
 		}
 		

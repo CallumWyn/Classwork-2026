@@ -16,6 +16,7 @@ int main() {
 	float degCelsius = 78.0f;
 	float degFahrenheit = 0.0f; // Modify this variable below.
 
+	// Converts celsius to fahrenheit
 	degFahrenheit = 1.8 * degCelsius + 32;
 
 	std::cout << "Celsius to Fahrenheit)" << std::endl;
@@ -30,11 +31,13 @@ int main() {
 	float rectHeight = 0.0f; // Modify this variable below.
 	float rectArea = 0.0f;   // Modify this variable below.
 
+	// Gets player input to decide the height and width of the rectangle
 	cout << "Rectangle Height?\n";
 	cin >> rectHeight;
 	cout << "Rectangle Width?\n";
 	cin >> rectWidth;
 
+	// Calculates the area of the rectangle
 	rectArea = rectHeight * rectWidth;
 
 	std::cout << "Area of a Rectangle)" << std::endl;
@@ -44,11 +47,13 @@ int main() {
 
 	// Exercise 4
 	// Average of Five
+	// Sets random seed for random numbers
 	srand(time(0));
 
 	float a, b, c, d, e;    // Modify these variables below.
 	float avg;              // Modify this variable below.
 	avg = a = b = c = d = e = 0.0f; // Initialize all to zero.
+	// Sets 5 variables to random values between 0 and 100 and gets the average of them
 	a = rand() % 100;
 	b = rand() % 100;
 	c = rand() % 100;
@@ -69,11 +74,13 @@ int main() {
 	int y;
 	int z;
 
+	// Gets user input for numbers
 	cout << "\n\nFirst number? (x)" << endl;
 	cin >> x;
 	cout << "Second number? (y)" << endl;
 	cin >> y;
 
+	// Stores a variable in another variable to swap two of them
 	z = y;
 	y = x;
 	x = z;
@@ -88,6 +95,7 @@ int main() {
 
 	int age;
 
+	// Gets user's age
 	cout << "\n\nHow old are you?" << endl;
 	cin >> age;
 
@@ -131,9 +139,11 @@ int main() {
 	// Challenge 3
 	// Number Swap (Difficulty Up)
 
+	// Since I was restricted to two variables, I made them into arrays to store multiple of their value
 	float x2[2];
 	float y2[2];
 
+	// Gets user input, then sets it to both values in the respective arrays
 	cout << "\n\nFirst number? (x)" << endl;
 	cin >> x2[0];
 	x2[1] = x2[0];
@@ -141,6 +151,7 @@ int main() {
 	cin >> y2[0];
 	y2[1] = y2[0];
 
+	// Uses the second stored value to override the first one of the other set
 	x2[0] = y2[1];
 	y2[0] = x2[1];
 

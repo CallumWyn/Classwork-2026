@@ -27,140 +27,166 @@ bool played = false;
 int main()
 {
     srand(time(0));
-    //{
-    //    srand(time(0));
+    {
+        srand(time(0));
 
-    //    float num1;
-    //    float num2;
-    //    float num3;
-    //    float num5;
-    //    /*2. Write a function that returns the smaller of two floats that are passed to it:
-    //         You should make a program that asks the user for two different numbers, then passes the two numbers into a function and output what the function returns*/
-    //    cout << "Please enter your first number" << endl;
-    //    cin >> num1;
-    //    cout << "Please enter your second number" << endl;
-    //    cin >> num2;
-    //    cout << "Please enter your third number" << endl;
-    //    cin >> num3;
-    //    cout << "The lowest number is " << low(low(num1, num2), num3) << endl;
+        
+        /*2. Write a function that returns the smaller of two floats that are passed to it:
+             You should make a program that asks the user for two different numbers, then passes the two numbers into a function and output what the function returns*/
+        
+        float num1;
+        float num2;
+        float num3;
+        
 
-    //    /*3. Add another function with the same name as the one you wrote in question 2, but with
-    //         three floats instead of two. What is this language feature called?*/
-    //         // I just put the function inside itself to do three
+        // Collects 3 numbers from the user 
+        cout << "Please enter your first number" << endl;
+        cin >> num1;
+        cout << "Please enter your second number" << endl;
+        cin >> num2;
+        cout << "Please enter your third number" << endl;
+        cin >> num3;
+        // Calculates the lowest of the bunch of numbers
+        cout << "The lowest number is " << low(low(num1, num2), num3) << endl;
 
-    //         /*4. The following statement calls a function named Half. The Half function returns a value that
-    //              is half that of the argument. Write the function.*/
+        /*3. Add another function with the same name as the one you wrote in question 2, but with
+             three floats instead of two. What is this language feature called?*/
+             // I just put the function inside itself to do three
 
-    //    half(5);
+             /*4. The following statement calls a function named Half. The Half function returns a value that
+                  is half that of the argument. Write the function.*/
 
-    //    /*5. Write a function named CoinToss that simulates the tossing of a coin.
-    //         The function should use the standard library rand() function in order to generate a
-    //         display of either “heads” or “tails”. The rand() can be added by adding #include <cstdlib>
-    //         to the top of your program. It returns a random number between 0 and 32767.
-    //         Demonstrate the function in a program that asks the user how many times they want to
-    //         toss the coin, and then simulates the tossing of the coin that number of times.*/
+        // Halves the number inputted
+        half(5);
 
-    //    cout << "How many coins would you like to toss?" << endl;
-    //    cin >> num5;
-    //    cointoss(num5);
+        /*5. Write a function named CoinToss that simulates the tossing of a coin.
+             The function should use the standard library rand() function in order to generate a
+             display of either “heads” or “tails”. The rand() can be added by adding #include <cstdlib>
+             to the top of your program. It returns a random number between 0 and 32767.
+             Demonstrate the function in a program that asks the user how many times they want to
+             toss the coin, and then simulates the tossing of the coin that number of times.*/
+        
+        
+        float num5;
+        // Collects user input
+        cout << "How many coins would you like to toss?" << endl;
+        cin >> num5;
+        // Uses the user input to decide how many times to flip a coin
+        cointoss(num5);
 
-    //    /*7. Write a function called SumTo that accepts an integer parameter N and returns the sum of
-    //         all integers from 1 to N, including N.*/
-
-    //    int result = SumTo(3); //result = 1 + 2 + 3 = 6
-    //    std::cout << result << std::endl;
-    //    result = SumTo(15); //result should now be 120
-    //    std::cout << result << std::endl;
-
-    //    /*8. Write a function that takes as its parameters an array of integers and the size of the array
-    //         and returns the sum of the values in the array.*/
-    //    int integer_array[5] = { 7, 3, 2, 4, 9 };
-    //    //int result = SumArray(integer_array, 5); //result = 25
-    //    std::cout << SumArray(integer_array, 5) << std::endl;
-
-    //    /*9. Write a function that takes as its parameter an array of integers and the size of the array
-    //         and returns the minimum of the values in the array.*/
-    //    int integer_array2[7] = { 10, 15, 7, 4, 13, 19, 8 };
-    //    int result2 = MinInArray(integer_array2, 7); //result = 4
-    //    std::cout << result2 << std::endl;
-
-    //    /*11. Write a function that takes as its parameters two input arrays of integers , an integer for
-    //          their size and an output array. Set the value at each index to the sum of the corresponding
-    //          two elements of the input arrays at the same index. Assume the three arrays are of equal
-    //          length. Write your own code for testing this function.*/
-
-    //    int array1[3] = { 5, 7, 9 };
-    //    int array2[3] = { 2, 4, 6 };
-    //    int array3[3];
-
-    //    AddArrays(array1, array2, 3, array3);
-
-    //    for (int i = 0; i < 3; i++) {
-    //        cout << array3[i] << " ";
-    //    }
-
-    //    /*12. Write a function that takes as its parameters an array called array_input of integers and the
-    //          size of the array and modifies the given array so that it contains a running sum of its
-    //          original values. For example, if the array originally had the values {3,2,4,7}, after running
-    //          your function that array would instead contain {3,5,9,16}, and if you ran it another time
-    //          passing the modified array in again, you'd have {3,8,17,33}. Write your own code for testing
-    //          this function. */
+        /*7. Write a function called SumTo that accepts an integer parameter N and returns the sum of
+             all integers from 1 to N, including N.*/
 
 
-    //    cout << "\n\n";
-    //    int array4[4] = { 3,2,4,7 };
-    //    RunningArray(array4, 4);
-    //    cout << "\n\n";
-    //    RunningArray(array4, 4);
-    //    cout << "\n\n";
+        int result = SumTo(3); //result = 1 + 2 + 3 = 6
+        std::cout << result << std::endl;
+        result = SumTo(15); //result should now be 120
+        std::cout << result << std::endl;
 
-    //    /*13. Write a function that searches for a particular number in an array. The function should
-    //          have three parameters: the array, the array size, and the number to be found. If the
-    //          number is in the array, the function should return the position of the number in the array.
-    //          If the number isn’t found, the function should return -1. In the case that the desired
-    //          number appears more than once in the array, the function should return the position of
-    //          the first occurrence. Write your own code to test this function.*/
+        /*8. Write a function that takes as its parameters an array of integers and the size of the array
+             and returns the sum of the values in the array.*/
+        int integer_array[5] = { 7, 3, 2, 4, 9 };
+        //int result = SumArray(integer_array, 5); //result = 25
+        // This function adds all of the numbers in an array together
+        std::cout << SumArray(integer_array, 5) << std::endl;
 
-    //    int array5[7] = { 5,9,0,2,17,42,7 };
+        /*9. Write a function that takes as its parameter an array of integers and the size of the array
+             and returns the minimum of the values in the array.*/
 
-    //    cout << "Index of 42: " << SearchArray(array5, 7, 42) << "\n\n" << endl;
 
-    //    /*14. Write a function named Split that accepts one input array of integers, an integer for the
-    //          size of the input array, and two output arrays. All numbers in the input array that are
-    //          positive are copied into the first output array and all numbers in the input array that are
-    //          negative are copied into the second output array. The function should return how many
-    //          numbers were copied into the first output array. Write your own code to test this function.*/
+        int integer_array2[7] = { 10, 15, 7, 4, 13, 19, 8 };
+        // Gets the smallest number in an array
+        int result2 = MinInArray(integer_array2, 7); //result = 4
+        std::cout << result2 << std::endl;
 
-    //    int array6[6] = { -5,-9,14,12,-2,-19 };
-    //    int array7[6];
-    //    int array8[6];
+        /*11. Write a function that takes as its parameters two input arrays of integers , an integer for
+              their size and an output array. Set the value at each index to the sum of the corresponding
+              two elements of the input arrays at the same index. Assume the three arrays are of equal
+              length. Write your own code for testing this function.*/
 
-    //    cout << "\nThe amount of positive numbers in the array is " << SplitArray(array6, 6, array7, array8) << endl;
+        int array1[3] = { 5, 7, 9 };
+        int array2[3] = { 2, 4, 6 };
+        int array3[3];
 
-    //    /*15. Write a function that calculates and then returns x to the power of y.*/
-    //    cout << "\n\n 5 to the power of 4 is " << Power(5, 4) << endl;
+        // Combines the two arrays into one by adding numbers at the same index and putting them in a new array
+        AddArrays(array1, array2, 3, array3);
 
-    //    /*16. Write a function that takes in an array of integers, and the size of the array. The function
-    //          should print out the “look and say” sequence for the array. The look and say sequence
-    //          works by printing out how many of the same number there are in a row followed by that
-    //          number.*/
+        // Goes through the new array and outputs the numbers
+        for (int i = 0; i < 3; i++) {
+            cout << array3[i] << " ";
+        }
 
-    //    int array9[19] = { 1,2,2,1,5,1,1,7,7,7,7,1,1,1,1,1,1,1,1 };
+        /*12. Write a function that takes as its parameters an array called array_input of integers and the
+              size of the array and modifies the given array so that it contains a running sum of its
+              original values. For example, if the array originally had the values {3,2,4,7}, after running
+              your function that array would instead contain {3,5,9,16}, and if you ran it another time
+              passing the modified array in again, you'd have {3,8,17,33}. Write your own code for testing
+              this function. */
 
-    //    LookandSay(array9, 19);
 
-    //    cout << "\n";
+        cout << "\n\n";
+        int array4[4] = { 3,2,4,7 };
+        // Goes through the array and adds the number from the previous index to the current one
+        RunningArray(array4, 4);
+        cout << "\n\n";
+        RunningArray(array4, 4);
+        cout << "\n\n";
 
-    //}
+        /*13. Write a function that searches for a particular number in an array. The function should
+              have three parameters: the array, the array size, and the number to be found. If the
+              number is in the array, the function should return the position of the number in the array.
+              If the number isn’t found, the function should return -1. In the case that the desired
+              number appears more than once in the array, the function should return the position of
+              the first occurrence. Write your own code to test this function.*/
+
+        int array5[7] = { 5,9,0,2,17,42,7 };
+
+        // Goes through the array and finds the index of the number it's searching for
+        cout << "Index of 42: " << SearchArray(array5, 7, 42) << "\n\n" << endl;
+
+        /*14. Write a function named Split that accepts one input array of integers, an integer for the
+              size of the input array, and two output arrays. All numbers in the input array that are
+              positive are copied into the first output array and all numbers in the input array that are
+              negative are copied into the second output array. The function should return how many
+              numbers were copied into the first output array. Write your own code to test this function.*/
+
+        int array6[6] = { -5,-9,14,12,-2,-19 };
+        int array7[6];
+        int array8[6];
+
+        // Goes through the array and finds all of the positive numbers
+        cout << "\nThe amount of positive numbers in the array is " << SplitArray(array6, 6, array7, array8) << endl;
+
+        /*15. Write a function that calculates and then returns x to the power of y.*/
+        
+        // Puts a number in a for loop and multiplies it by itself a certain number of times
+        cout << "\n\n 5 to the power of 4 is " << Power(5, 4) << endl;
+
+        /*16. Write a function that takes in an array of integers, and the size of the array. The function
+              should print out the “look and say” sequence for the array. The look and say sequence
+              works by printing out how many of the same number there are in a row followed by that
+              number.*/
+
+        int array9[19] = { 1,2,2,1,5,1,1,7,7,7,7,1,1,1,1,1,1,1,1 };
+
+        // Goes through an array and sees how many of the same number are in a row
+        LookandSay(array9, 19);
+
+        cout << "\n";
+
+    }
 
     /*17. Write a program that lets the user play the game of Rock, Paper, Scissors against the
           computer.*/
 
+    // Runs a while loop until the player opts out of playing again
     while (PlayAgain()) {
         string playerInput;
         played = true;
+        // Asks the player if they choose Scissors, Paper or Rock and gets their input
         cout << "\n\nLet's play Scissors Paper Rock! Which do you choose?" << endl;
         cin >> playerInput;
+        // Runs the game
         SPR(playerInput);
     }
 
@@ -303,6 +329,7 @@ void LookandSay(int num24[], int num25) {
 
 void SPR(string playerInput) {
     string cpuInput;
+    // Chooses a random number from 0-2 and that sets the cpu's input
     switch (rand() % 3) {
     case(0):
         cpuInput = "Scissors";
@@ -317,6 +344,7 @@ void SPR(string playerInput) {
 
     cout << "\n The computer played " << cpuInput << endl;
 
+    // Compares the user and cpu's inputs and outputs the result of the game
     if ((playerInput == "Paper" || playerInput == "paper") && cpuInput == "Scissors") { cout << "You Lose!\n" << endl; }
     if ((playerInput == "Paper" || playerInput == "paper") && cpuInput == "Paper") { cout << "It's a Tie!\n" << endl; }
     if ((playerInput == "Paper" || playerInput == "paper") && cpuInput == "Rock") { cout << "You Win!\n" << endl; }
@@ -328,12 +356,16 @@ void SPR(string playerInput) {
     if ((playerInput == "Scissors" || playerInput == "scissors") && cpuInput == "Rock") {cout << "You Lose!\n" << endl;}
     
 }
+
 bool PlayAgain() {
+    // Only says this when the game is first played
     if (!played){ cout << "\nWant to play Scissors Paper Rock? (Yes/No)" << endl; }
     else { cout << "\nWill you play again? (Yes/No)" << endl; }
     string again;
     cin >> again;
+    // Breaks out of a loop if no is selected
     if (again == "No") { return false; }
     else if (again == "no") { return false; }
+    // Ignores every other input and runs the game again if no isn't selected
     else { return true; }
 }

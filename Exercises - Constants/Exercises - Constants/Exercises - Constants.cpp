@@ -15,6 +15,7 @@ int main()
     // Write a function that, when you call it, displays a message telling how many times it has been called: “I have been called 3 times” for instance.
     // Write a main function that calls this function at least 10 times.
 
+    // Tests static ints
     for (int i = 0; i < 20; i++) {
         calling();
     }
@@ -23,6 +24,7 @@ int main()
     // Write a program that asks the user for a number of gallons and then outputs the equivalent number of litres. 
     // There are 3.78533 litres in a gallon. Use a declared constant to store that value.
     float litres;
+    // Gets the user's input and converts it into gallons
     cout << "\n\n\nHow many litres would you like to convert to gallons?" << endl;
     cin >> litres;
     cout << litres << " litres is " << ToGallons(litres) << " gallons!" << endl;
@@ -31,13 +33,17 @@ int main()
 
 void calling() {
     static int times = 0;
+    // Adds one to times
     times++;
+    // If it's on the first cycle, it uses proper grammer
     if (times == 1) { cout << "I have been called " << times << " time" << endl; }
+    // Outputs the amount of times this function has been run
     else { cout << "I have been called " << times << " times" << endl; }
     
 }
 
 float ToGallons(float litres) {
+    // Uses the constant int GALLONCONVERSION to convert litres to gallons
     return litres / GALLONCONVERSION;
 }
 
