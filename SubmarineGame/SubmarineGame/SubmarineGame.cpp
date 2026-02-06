@@ -97,15 +97,21 @@ int main()
             string rotationDirection;
 
 
-            cout << "\n\n\nHow many degrees would you like to move? (0-360)" << endl;
+            cout << "\nHow many degrees would you like to move? (0-360)" << endl;
             cin >> rotationAmount;
-            cout << "Which direction would you like to rotate? (Left/Right)" << endl;
+            cout << "Which direction would you like to rotate? (Left/Right) (Capitalization is important)" << endl;
             cin >> rotationDirection;
 
             // Resets if the player enters a number above 360
             if (rotationAmount > 360) {
                 cout << "Invalid Input. Put in a valid degree (0-360) and direction (Left/Right)\n\n" << endl;
                 continue;
+            }
+            else if (rotationDirection != "Left") {
+                if (rotationDirection != "Right") {
+                    cout << "Invalid Input. Put in a valid degree (0-360) and direction (Left/Right)\n\n" << endl;
+                    continue;
+                }
             }
 
             //AjustPlayerPosition(rotationAmount, rotationDirection);

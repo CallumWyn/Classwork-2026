@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{78B8E139-3DE3-484E-B71C-21A83253C8EE}|Exercises - Constants\\Exercises - Constants.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\Exercises - Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{78B8E139-3DE3-484E-B71C-21A83253C8EE}|Exercises - Constants\\Exercises - Constants.vcxproj|solutionrelative:Exercises - Constants\\Exercises - Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78B8E139-3DE3-484E-B71C-21A83253C8EE}|Exercises - Constants\\Exercises - Constants.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\file1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{78B8E139-3DE3-484E-B71C-21A83253C8EE}|Exercises - Constants\\Exercises - Constants.vcxproj|solutionrelative:Exercises - Constants\\file1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78B8E139-3DE3-484E-B71C-21A83253C8EE}|Exercises - Constants\\Exercises - Constants.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\file2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{78B8E139-3DE3-484E-B71C-21A83253C8EE}|Exercises - Constants\\Exercises - Constants.vcxproj|solutionrelative:Exercises - Constants\\file2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "file2.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\file2.cpp",
+              "RelativeDocumentMoniker": "Exercises - Constants\\file2.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\file2.cpp",
+              "RelativeToolTip": "Exercises - Constants\\file2.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-05T23:56:11.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "file1.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\file1.cpp",
+              "RelativeDocumentMoniker": "Exercises - Constants\\file1.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\file1.cpp",
+              "RelativeToolTip": "Exercises - Constants\\file1.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-05T23:56:06.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Exercises - Constants.cpp",
+              "DocumentMoniker": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\Exercises - Constants.cpp",
+              "RelativeDocumentMoniker": "Exercises - Constants\\Exercises - Constants.cpp",
+              "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Exercises - Constants\\Exercises - Constants\\Exercises - Constants.cpp",
+              "RelativeToolTip": "Exercises - Constants\\Exercises - Constants.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-05T23:48:06.715Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
