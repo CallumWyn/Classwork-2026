@@ -9,8 +9,8 @@ int main()
 /*   Structure for Stores(Store name, Open times, Number of Aisles)
      Structure for Aisles (Items in aisle, Amount of an item found in Aisle, Aisle number, Category of items in aisle,etc)
      Structure for Items (Name of item, Item Category, Item price, Item Size)
-     Structure for basket (Area to store items, Amount of space)
-     Structure for 
+     Structure for Basket (Area to store items, Amount of space)
+     Structure for ??
      
      GENERAL IDEAS
      Have a list of store names and program a way to randomly select one of them, along with their open times and Aisles
@@ -24,7 +24,7 @@ int main()
      "Where would you like to go?"
      "Aisle 1 - Sweets"
      "Aisle 2 - Grains"
-     "Aisle 3 - Medicine"
+     "Aisle 3 - Fruit"
      "Aisle 4 - Dairy"
 
      Would also be nice to implement a method of viewing items in the basket
@@ -36,6 +36,7 @@ int main()
 
      "Remaining Space:"
 
+     Basically just make an Average Shopping Simulator
 
      */
 }

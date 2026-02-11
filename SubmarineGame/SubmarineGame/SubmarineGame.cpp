@@ -33,6 +33,10 @@ lowestdistance priorityEnemy;
 bool priorityAlive = false;
 int priorityTargetPos;
 
+int rotationAmount;
+string rotationAmountString;
+string rotationDirection;
+
 // Was planning on changing playerPos and compare it to enemyPos, but decided not to
 //int playerPos = 0;
 //int displayPlayerPos = 0;
@@ -91,9 +95,7 @@ int main()
                 break;
             }
 
-            int rotationAmount;
-            string rotationAmountString;
-            string rotationDirection;
+
 
             // Asks the player how much they want to rotate and in what direction
             cout << "\nHow many degrees would you like to move? (0-360)" << endl;
@@ -132,10 +134,10 @@ int main()
             
 
             // Checks if the distance to the enemy is 0, and if it isn't the priority, it outputs failure
-            if (GetEnemyLocation(enemyAPos) == 0 && priorityEnemy != lowestdistance::EnemyA && enemyALiving) { cout << "This enemy wasn't the priority target!\n" << endl; }
-            if (GetEnemyLocation(enemyBPos) == 0 && priorityEnemy != lowestdistance::EnemyB && enemyBLiving) { cout << "This enemy wasn't the priority target!\n" << endl; }
-            if (GetEnemyLocation(enemyCPos) == 0 && priorityEnemy != lowestdistance::EnemyC && enemyCLiving) { cout << "This enemy wasn't the priority target!\n" << endl; }
-            if (GetEnemyLocation(enemyDPos) == 0 && priorityEnemy != lowestdistance::EnemyD && enemyDLiving) { cout << "This enemy wasn't the priority target!\n" << endl; }
+            if ((GetEnemyLocation(enemyAPos) == 0 && priorityEnemy) != (lowestdistance::EnemyA && enemyALiving)) { cout << "This enemy wasn't the priority target!\n" << endl; }
+            if ((GetEnemyLocation(enemyBPos) == 0 && priorityEnemy) != (lowestdistance::EnemyB && enemyBLiving)) { cout << "This enemy wasn't the priority target!\n" << endl; }
+            if ((GetEnemyLocation(enemyCPos) == 0 && priorityEnemy) != (lowestdistance::EnemyC && enemyCLiving)) { cout << "This enemy wasn't the priority target!\n" << endl; }
+            if ((GetEnemyLocation(enemyDPos) == 0 && priorityEnemy) != (lowestdistance::EnemyD && enemyDLiving)) { cout << "This enemy wasn't the priority target!\n" << endl; }
 
 
             // Checks if the distance to the enemy is 0, and if the enemy is the priority target, kills it
