@@ -5,6 +5,9 @@
     {
       "AbsoluteMoniker": "D:0:0:{C7742424-5BCD-49DC-A412-186547F83146}|Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.vcxproj|C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C7742424-5BCD-49DC-A412-186547F83146}|Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.vcxproj|solutionrelative:Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\include\\xstring||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +17,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "xstring",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\include\\xstring",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\include\\xstring",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\include\\xstring",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\include\\xstring",
+              "ViewState": "AgIAAAkQAAAAAAAAAADgvxoQAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-11T02:49:22.079Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +40,7 @@
               "RelativeDocumentMoniker": "Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.cpp",
               "ToolTip": "C:\\Users\\s220460\\Desktop\\Classwork 2026\\Classwork-2026\\Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.cpp",
               "RelativeToolTip": "Assignment 1 - Introduction to C\u002B\u002B\\Assignment 1 - Introduction to C\u002B\u002B.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAmwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-11T02:13:43.865Z",
               "EditorCaption": ""
