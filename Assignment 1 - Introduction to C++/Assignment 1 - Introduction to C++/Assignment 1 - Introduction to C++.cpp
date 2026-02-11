@@ -72,6 +72,7 @@ int main()
     // and return an int (rounded down) to represent the accuracy, as a percentage from 0 to 100.
 
     // 4.2
+    // Outputs an Accuracy Percentage based off of Hits and Shots Fired
     cout << FPSAccuracy(3, 4) << endl;
     cout << FPSAccuracy(1, 2) << endl;
     cout << FPSAccuracy(13, 13) << endl;
@@ -85,6 +86,7 @@ int main()
     // 5.2
     cout << "\n\n\n";
     Player player;
+    // Outputs all of the player's stats after applying a potion
     PlayerOutput(applyPotion(HEALTH,player));
     PlayerOutput(applyPotion(SPEED,player));
     PlayerOutput(applyPotion(STRENGTH,player));
