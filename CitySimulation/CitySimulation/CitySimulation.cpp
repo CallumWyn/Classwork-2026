@@ -15,15 +15,10 @@ using namespace std;
 
 
 /*
- Struct for each suburb to hold how many people are in the city and what suburbs are connected to it
- Each turn can represent a day, events happen once every five days
- 
- Public transport will have to happen through a function and a for loop that goes through all the cities
- Might need temp variables to hold how many people stay in each city
- I could have 8 variables that are like "People to go to city 1" and I just add to that whenever people move to a city and subtract from the original amount
 
- Events related to all of the different civilians could be good
-
+    STILL TO DO
+    people leave city 4 two days after events for some reason
+    still need to implement a way to kill people, and make an event or two to go along with it
  
 
 
@@ -42,6 +37,8 @@ enum Events {
     BusinessConfrence,
     TeacherInterviews
 };
+
+vector<string> listOfEvents = { "Artist Alley", "A Business Confrence", "Teacher Interviews" };
 
 Events currentEvent;
 
@@ -68,8 +65,8 @@ Suburb suburb8 = { 8,{1,2,6}, distrib(gen),"Artist"};
 
 float randomPopPercentage;
 void publicTransport();
-void publicTransportManual(unsigned int suburbNumber, float popPercent, Suburb suburb);
-void publicTransportManual(unsigned int suburbNumber, float popPercent, vector<Suburb> suburbs);
+void publicTransport(unsigned int suburbNumber, float popPercent, Suburb suburb);
+void publicTransport(unsigned int suburbNumber, float popPercent, vector<Suburb> suburbs);
 void killPeople(Suburb suburb);
 
 
@@ -112,17 +109,46 @@ int main()
             currentEvent = Events(rand() % 3);
         }
 
+
+
         if (event) {
-            publicTransportManual(8, 100, suburbList[3]);
+            // publicTransportManual(8, 100, suburbList[3]);
             switch (currentEvent) {
             case(ArtistAlley): // Brings all the artists to a random suburb
-                cout << "artist";
-                break;
+                switch(rand() % 2 + 1) {
+                case(1):
+                    publicTransport(5, 100, suburbList[7]);
+                    break;
+                case(2):
+                    publicTransport(8, 100, suburbList[4]);
+                    break;
+                }
             case(BusinessConfrence): // Brings all of the workers to a random suburb
-                cout << "business";
+                
+                switch (rand()%3 + 1) {
+                case(1):
+                    publicTransport(1, 100, { suburbList[1],suburbList[3] });
+                    break;
+                case(2):
+                    publicTransport(2, 100, { suburbList[0],suburbList[3] });
+                    break;
+                case(3):
+                    publicTransport(4, 100, { suburbList[0],suburbList[1] });
+                    break;
+                }
                 break;
-            case(TeacherInterviews): // Brings all teachers to a random suburb
-                cout << "teacher";
+            case(TeacherInterviews): // Brings all teachers to a random suburb // 3,6,7
+                switch (rand() % 3 + 1) {
+                case(1):
+                    publicTransport(3, 100, { suburbList[5],suburbList[6] });
+                    break;
+                case(2):
+                    publicTransport(6, 100, { suburbList[2],suburbList[6] });
+                    break;
+                case(3):
+                    publicTransport(7, 100, { suburbList[2],suburbList[5] });
+                    break;
+                }
                 break;
             }
         }
@@ -173,28 +199,13 @@ void publicTransport() { // This version of the function is used every time a da
     }
 }
 
-
-// Firstly, we need to see if the destinationNumber is equal to a neighboring suburbs number
-// If it is, we can just send them over
-// If not, we will have to wait until the day count reaches a certain point
-// Before the wait starts, the people will have to leave the suburb they are from
-// To keep track of this, a variable can be printed that says something like "People on Bus: " and can list all of the people on busses through a static variable
-
-
-// NEW IDEA
-// threading is stupid, don't bother learning it now
-// Only set current day when it is equal to day, as events only happen once every 5 days, and it takes at most 3 days to finish running this code
-// Run this code while a bool is true, the bool is set to false when all people have moved
-// Only have to run this code once every day, for 3 days at most
-
-// NOTE: NEED TO MAKE THE SUBURB INPUT A VECTOR TO COLLECT MULTIPLE (or we could just make an overloaded function with one instead)
-void publicTransportManual(unsigned int destinationNumber, float popPercent, Suburb suburb) { // This version of the function is used when manually moving people from suburb to suburb (During Events and things like that)
+void publicTransport(unsigned int destinationNumber, float popPercent, Suburb suburb) { // This version of the function is used when manually moving people from suburb to suburb (During Events and things like that)
     bool connecting = false;
-     int currentDay = day;
+    int arrivalDay = lastEventDay + 2;
     for (int i : suburb.connectingSuburbs) {
         if (i == destinationNumber) {
             bool connecting = true;
-            cout << suburbList[suburb.suburbNumber - 1].population * (popPercent / 100) << endl;
+            // cout << suburbList[suburb.suburbNumber - 1].population * (popPercent / 100) << endl;
             suburbList[destinationNumber - 1].population += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
             suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
             break;
@@ -222,14 +233,76 @@ void publicTransportManual(unsigned int destinationNumber, float popPercent, Sub
             collectedPeople = false;
             event = false;
         }
-        if (event) {
+        /*if (event) {
             cout << peopleStorage << " people have gone on a trip to City " << destinationNumber << "\n" << endl;
-        }
-        
+        }*/
+
     }
 
-    
+    if (event) {
+        cout << "\nThere is an event in City " << destinationNumber << " on Day " << arrivalDay << endl;
+        cout << "\n" << peopleStorage << " people have gone on a trip to City " << destinationNumber << " for " << listOfEvents[currentEvent] << " event" << endl;
+        /*system("pause");
+        system("cls");*/
+    }
+
+
 }
 
+void publicTransport(unsigned int destinationNumber, float popPercent, vector<Suburb> suburbs) {
+    bool connecting = false;
+    int arrivalDay = lastEventDay + 2;
+    for (Suburb suburb : suburbs) {
+        for (int i : suburb.connectingSuburbs) {
+            if (lastEventDay == day) {
+                if (i == destinationNumber) {
+                    bool connecting = true;
+                    // cout << suburbList[suburb.suburbNumber - 1].population * (popPercent / 100) << endl;
+                    suburbList[destinationNumber - 1].population += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                    suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                    break;
+                }
+            }
+        }
+        if (!connecting) {
+            if (!collectedPeople) {
+                peopleStorage += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                //collectedPeople = true;
+            }
+            // This only runs when the destination is 8 and the current location is 7, or vise versa, as they are 3 days away
+            if (((destinationNumber == 8) && (suburb.suburbNumber == 7)) || ((destinationNumber == 7) && (suburb.suburbNumber == 8))) {
+                if (day == lastEventDay + 3) {
+                    suburbList[destinationNumber - 1].population += peopleStorage;
+                    peopleStorage = 0;
+                    collectedPeople = false;
+                    event = false;
+                }
+                arrivalDay = lastEventDay + 3;
+            }
+            // Every other location takes 2 days, unless they're connecting
+            else if (day == lastEventDay + 2) {
+                suburbList[destinationNumber - 1].population += peopleStorage;
+                peopleStorage = 0;
+                collectedPeople = false;
+                event = false;
+            }
 
+
+        }
+    }
+    if (lastEventDay == day) {
+        collectedPeople = true;
+    }
+    if (peopleStorage == 0) {
+        event = false;
+        collectedPeople = false;
+    }
+    if (event) {
+        cout << "\nThere is an event in City " << destinationNumber << " on Day " << arrivalDay << endl;
+        cout << "\n" << peopleStorage << " people have gone on a trip to City " << destinationNumber << " for " << listOfEvents[currentEvent] << " event\n" << endl;
+        //system("pause");
+        //system("cls");
+    }
+}
 
