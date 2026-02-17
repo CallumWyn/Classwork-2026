@@ -118,9 +118,11 @@ int main()
                 switch(rand() % 2 + 1) {
                 case(1):
                     publicTransport(5, 100, suburbList[7]);
+                    cout << "\n" << "City 5?" << endl;
                     break;
                 case(2):
                     publicTransport(8, 100, suburbList[4]);
+                    cout << "\n" << "City 8?" << endl;
                     break;
                 }
             case(BusinessConfrence): // Brings all of the workers to a random suburb
@@ -137,7 +139,7 @@ int main()
                     break;
                 }
                 break;
-            case(TeacherInterviews): // Brings all teachers to a random suburb // 3,6,7
+            case(TeacherInterviews): // Brings all teachers to a random suburb
                 switch (rand() % 3 + 1) {
                 case(1):
                     publicTransport(3, 100, { suburbList[5],suburbList[6] });
@@ -252,53 +254,54 @@ void publicTransport(unsigned int destinationNumber, float popPercent, Suburb su
 void publicTransport(unsigned int destinationNumber, float popPercent, vector<Suburb> suburbs) {
     bool connecting = false;
     int arrivalDay = lastEventDay + 2;
-    for (Suburb suburb : suburbs) {
-        for (int i : suburb.connectingSuburbs) {
-            if (lastEventDay == day) {
-                if (i == destinationNumber) {
-                    bool connecting = true;
-                    // cout << suburbList[suburb.suburbNumber - 1].population * (popPercent / 100) << endl;
-                    suburbList[destinationNumber - 1].population += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
-                    suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
-                    break;
+    if (event) {
+        for (Suburb suburb : suburbs) {
+            for (int i : suburb.connectingSuburbs) {
+                if (lastEventDay == day) {
+                    if (i == destinationNumber) {
+                        bool connecting = true;
+                        // cout << suburbList[suburb.suburbNumber - 1].population * (popPercent / 100) << endl;
+                        suburbList[destinationNumber - 1].population += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                        suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                        break;
+                    }
                 }
             }
-        }
-        if (!connecting) {
-            if (!collectedPeople) {
-                peopleStorage += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
-                suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
-                //collectedPeople = true;
-            }
-            // This only runs when the destination is 8 and the current location is 7, or vise versa, as they are 3 days away
-            if (((destinationNumber == 8) && (suburb.suburbNumber == 7)) || ((destinationNumber == 7) && (suburb.suburbNumber == 8))) {
-                if (day == lastEventDay + 3) {
+            if (!connecting) {
+                if (!collectedPeople) {
+                    peopleStorage += (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                    suburbList[suburb.suburbNumber - 1].population -= (suburbList[suburb.suburbNumber - 1].population * (popPercent / 100));
+                    //collectedPeople = true;
+                }
+                // This only runs when the destination is 8 and the current location is 7, or vise versa, as they are 3 days away
+                if (((destinationNumber == 8) && (suburb.suburbNumber == 7)) || ((destinationNumber == 7) && (suburb.suburbNumber == 8))) {
+                    if (day == lastEventDay + 3) {
+                        suburbList[destinationNumber - 1].population += peopleStorage;
+                        peopleStorage = 0;
+                        collectedPeople = false;
+                        event = false;
+                    }
+                    arrivalDay = lastEventDay + 3;
+                }
+                // Every other location takes 2 days, unless they're connecting
+                else if (day == lastEventDay + 2) {
                     suburbList[destinationNumber - 1].population += peopleStorage;
                     peopleStorage = 0;
                     collectedPeople = false;
                     event = false;
                 }
-                arrivalDay = lastEventDay + 3;
-            }
-            // Every other location takes 2 days, unless they're connecting
-            else if (day == lastEventDay + 2) {
-                suburbList[destinationNumber - 1].population += peopleStorage;
-                peopleStorage = 0;
-                collectedPeople = false;
-                event = false;
-            }
 
 
+            }
         }
-    }
-    if (lastEventDay == day) {
-        collectedPeople = true;
-    }
-    if (peopleStorage == 0) {
-        event = false;
-        collectedPeople = false;
-    }
-    if (event) {
+        if (lastEventDay == day) {
+            collectedPeople = true;
+        }
+        if (peopleStorage == 0) {
+            event = false;
+            collectedPeople = false;
+        }
+
         cout << "\nThere is an event in City " << destinationNumber << " on Day " << arrivalDay << endl;
         cout << "\n" << peopleStorage << " people have gone on a trip to City " << destinationNumber << " for " << listOfEvents[currentEvent] << " event\n" << endl;
         //system("pause");
