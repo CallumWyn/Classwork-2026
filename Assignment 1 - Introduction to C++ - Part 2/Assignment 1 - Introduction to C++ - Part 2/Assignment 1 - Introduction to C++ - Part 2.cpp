@@ -2,9 +2,11 @@
 //
 
 #include <iostream>
+#include <random>
 #include <string>
 #include <assert.h>
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
 
@@ -17,13 +19,51 @@ void SortArray(int array[], int size);
 // 8.2
 int BinarySearchArray(int array[], int size, int searchFor);
 
+// 9.1
+void NumberSwap(int *x, int *y);
+
+
+struct Enemy {
+    string name; // Name of the enemy
+    int health; // Enemy health
+    pair<int, int> damageRange; // The minimum and maximum amount of damage that can be done
+    bool dead = false; // If the enemy is dead
+
+
+    void AttackEnemy(Enemy &enemy) { // Gets a reference of the enemy it's attacking so the damage stays
+
+        // Allows a random amount of damage between the damage range to be generated
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<int> distrib(damageRange.first, damageRange.second);
+        
+        // Generates a random amount of damage and deals it to the enemy
+        int damage = distrib(gen);
+        enemy.health -= damage;
+
+        // Outputs how much damage has been done 
+        cout << "\n" << name << " dealt " << damage << " damage to the " << enemy.name << "!" << endl;
+        
+        // Sets the enemy to dead if it has 0 health left, otherwise tells the user how much health it has remaining
+        if (enemy.health <= 0) { enemy.dead = true; cout << enemy.name << " has died!\n"; }
+        else { cout << enemy.name << " has " << enemy.health << " health remaining!\n" << endl; }
+
+        // Pauses the system to allow the user time to look at the results
+        system("pause");
+        system("cls");
+    }
+};
+
 
 int main()
 {
+    srand(NULL);
+
     // 6.
     // You will write a function that performs a linear search through an integer array by passing the target value, and the array,
     // as function arguments. The function will return the index where the target is found, otherwise it will return -1.
 
+    
 
     int arr1[20] = { 67,13,3,89,43,2,19,71,5,61,97,7,37,31,17,11,83,53,23,29 };
 
@@ -79,6 +119,47 @@ int main()
         else { cout << userNumber << " could be found at the index " << userNumberIndex << endl; break; }
     }
 
+    // 9.
+    // You will write a function to swap the value of two integers. 
+    // You will do this by passing pointers to those integers into the function and performing the swap through pointer manipulation. 
+    // Your function will not return any values.
+
+    // 9.2
+    int a = 5;
+    int b = 7;
+    NumberSwap(&a, &b);
+
+    cout << "\n";
+
+    cout << a << endl;
+    cout << b << endl;
+
+    // 10
+    // Make a struct that represents a Mob, it should have an attack skill, a damage rating, a name and health.
+    // Write a function that determines the outcome of a battle by passing two Mobs by reference.
+    // In the battle function make each Mob perform an attack on the other by using their attack skills to determine the outcome somehow.
+    // How is up to you, but some form of simulated dice roll using randomness is suggested(think tabletop RPGs).
+
+
+    // 10.2
+    cout << "\n";
+    system("pause");
+    system("cls");
+
+    // Creates 2 different enemy types
+    Enemy goblin = { "Goblin", 25, {6, 12} };
+    Enemy orc = { "Orc", 55, {1,10} };
+    
+    // Creates a look where alive enemies attack
+    do {
+        if (!goblin.dead) { goblin.AttackEnemy(orc); }
+        if (!orc.dead) { orc.AttackEnemy(goblin); }
+    } while (!orc.dead && !goblin.dead);
+
+    // Runs a victory message after the battle is over
+    if (orc.dead) { cout << "\nGoblin has won!\n"; }
+    else if (goblin.dead) { cout << "\nOrc has won!\n"; }
+
 }
 
 // 6.1
@@ -130,4 +211,14 @@ int BinarySearchArray(int array[], int size, int searchFor) {
 
     
     return -1;
+}
+
+// 9.1
+void NumberSwap(int* x, int* y) {
+    // Temporarily stores a pointer
+    int z = *x;
+    // Sets x to y
+    *x = *y;
+    // Sets y to x
+    *y = z;
 }
