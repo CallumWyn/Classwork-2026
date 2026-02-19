@@ -1,6 +1,3 @@
-// CitySimulation.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -8,21 +5,7 @@
 using namespace std;
 
 #include <vector>
-#include <unordered_map>
 #include <random>
-
-
-
-
-/*
-
-    STILL TO DO
-    still need to implement a way to kill people, and make an event or two to go along with it
- 
-
-
-
-*/
 
 int day = 1;
 int eventDay = 5;
@@ -73,6 +56,7 @@ void publicTransport(unsigned int suburbNumber, float popPercent, Suburb suburb)
 void publicTransport(unsigned int suburbNumber, float popPercent, vector<Suburb> suburbs);
 void killPeople(Suburb& suburb, pair<float,float> popPercentRange);
 int chooseRandomCity(const vector<int> list, int size);
+int randomBetweenRange(int min, int max);
 
 Suburb suburbList[8] = { suburb1,suburb2,suburb3,suburb4,suburb5,suburb6,suburb7,suburb8 };
 unsigned int popMovedOut;
@@ -80,10 +64,6 @@ unsigned int popDead;
 
 int main()
 {
-
-    
-    
-    
     srand(time(NULL));
 
     while (true) {
@@ -103,26 +83,21 @@ int main()
         system("pause");
         system("cls");
 
-        // To move people between suburb that aren't neighbors, can use a day counter and say "When day == day+2, move them to suburb". If it is trying to move people from city 8 to 7 or vise versa, it will be day+3
-
         cout << "\nAfter one day...\n" << endl;
         publicTransport();
-
 
         // This ensures that events happen
         if (eventDay == day) {
             event = true;
             lastEventDay = eventDay;
             eventDay += 5;
-            currentEvent = Events(rand() % 7);
+            currentEvent = Events(randomBetweenRange(0,6));
         }
-
-
 
         if (event) {
             // publicTransportManual(8, 100, suburbList[3]);
             if (currentEvent == ArtistAlley) { // Brings all the artists to a random artist suburb (5, 8)
-                if (lastEventDay == day) { randomCity = rand() % 2 + 1; }
+                if (lastEventDay == day) { randomCity = randomBetweenRange(1,2); }
                 switch (randomCity) {
                 case(1):
                     publicTransport(5, 50, suburbList[7]);
@@ -133,7 +108,7 @@ int main()
                 }
             }
             else if (currentEvent == BusinessConfrence) { // Brings all of the workers to a random worker suburb (1, 2, 4)
-                if (lastEventDay == day) { randomCity = rand() % 3 + 1; }
+                if (lastEventDay == day) { randomCity = randomBetweenRange(1, 3); }
                 switch (randomCity) {
                 case(1):
                     publicTransport(1, 70, { suburbList[1],suburbList[3] });
@@ -147,7 +122,7 @@ int main()
                 }
             }
             else if (currentEvent == TeacherInterviews){ // Brings all teachers to a random teacher suburb (3, 6, 7)
-                if (lastEventDay == day) { randomCity = rand() % 3 + 1; }
+                if (lastEventDay == day) { randomCity = randomBetweenRange(1, 3); }
                 switch (randomCity) {
                 case(1):
                     publicTransport(3, 90, { suburbList[5],suburbList[6] });
@@ -161,7 +136,7 @@ int main()
                 }
             } 
             else if (currentEvent == Earthquake) { // Earthquake hits a random city
-                killPeople(suburbList[rand() % 8], { 5,25 });
+                killPeople(suburbList[randomBetweenRange(0, 7)], { 5,25 });
                 cout << " due to an Earthquake" << endl;
             }
             else if (currentEvent == Tsunami) { // Tsunami hits a random city on the coast
@@ -183,11 +158,7 @@ int main()
 
         day++;
     }
-
-    
 }
-
-
 
 void publicTransport() { // This version of the function is used every time a day passes, when people automatically move from suburb to suburb
     // Goes through all of the suburbs
@@ -286,6 +257,7 @@ void publicTransport(unsigned int destinationNumber, float popPercent, vector<Su
     //if (event) {
     // Goes through all of the suburbs in the list of suburbs
     for (Suburb suburb : suburbs) {
+        connecting = false;
         // Goes through all of the suburb's connecting suburbs list
         for (int i : suburb.connectingSuburbs) {
             // Makes sure the people are only collected on the first day
@@ -375,4 +347,9 @@ void killPeople(Suburb& suburb, pair<float, float> popPercentRange) {
 int chooseRandomCity(const vector<int> list, int size) {
     uniform_int_distribution<int> distrib(0, size-1);
     return list[distrib(gen)] - 1;
+}
+
+int randomBetweenRange(int min, int max) {
+    uniform_int_distribution<int> distrib(min, max);
+    return distrib(gen);
 }
