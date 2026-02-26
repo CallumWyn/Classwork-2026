@@ -23,20 +23,20 @@ int randomNumber;
 int continueNumber;
 
 
-
-struct Tree { // If tree runs out of bark, it's game over
-    int bark; // Basically your life points. If you run out, it's game over.
+// I added notes next to these when I was coming up with my idea for this game. I based all the mechanics off of these
+struct Tree {   // If tree runs out of bark, it's game over
+    int bark;   // Basically your life points. If you run out, it's game over.
     int leaves; // When added to magic, it can add to mana, and subtract from leaves
 };
-struct Fire { // If the fire runs out of fuel, you win
-    int fuel; // When added to tree, it can subtract from bark, and add to fuel. The amount added is based on heat
-    int heat; // Heat consumes a bit of fuel every round, and increases exponentionally depending on what the original heat value is
+struct Fire {   // If the fire runs out of fuel, you win
+    int fuel;   // When added to tree, it can subtract from bark, and add to fuel. The amount added is based on heat
+    int heat;   // Heat consumes a bit of fuel every round, and increases exponentionally depending on what the original heat value is
 };
 struct Water {
     int liquid; // When added to tree, it can add to bark and leaves, and subtract from liquid
-    int ice; // When added to fire, it subtracts from ice and ???, and adds to liquid
+    int ice;    // When added to fire, it subtracts from ice and heat, and adds to liquid
 };
-struct Magic { // We can make magic a random event, that can have a good or bad effect.
+struct Magic {  // We can make magic a random event, that can have a good or bad effect.
     float mana; // When mana is added to anything, a multiplicative value is added to that, and a small amount of mana is removed. 
                 // It can be added to bark, heat and ice
 };
@@ -56,7 +56,7 @@ Tree operator + (const Tree& left, Fire& right) {
     system("pause");
     system("cls");
     right.fuel += (right.heat > 3 ) ? floor(right.heat*0.30) : ceil(right.heat * 0.30);
-    right.heat += ceil(right.fuel*0.2);
+    right.heat += ceil(right.fuel*0.3);
     return *x;
 }
 
@@ -237,7 +237,6 @@ Water operator += (const Water& left, const Water& right) {
 
 int main()
 {
-    
     while ((tree.bark > 0) && (fire.heat > 0) && (fire.fuel > 0)) {
         mainMenu();
         roundNumber++;
@@ -249,7 +248,6 @@ int main()
     if (tree.bark <= 0) {
         std::cout << "\nGame Over!";
     }
-
 }
 
 
