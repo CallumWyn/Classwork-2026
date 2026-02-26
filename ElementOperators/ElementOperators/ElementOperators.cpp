@@ -42,7 +42,7 @@ struct Magic {  // We can make magic a random event, that can have a good or bad
 };
 
 Tree tree{ 10,20 };
-Water water{ 4,3 };
+Water water{ 0,3 };
 Fire fire{ 5,10 };
 Magic magic{ 10 };
 
@@ -51,12 +51,12 @@ Magic magic{ 10 };
 Tree operator + (const Tree& left, Fire& right) {
     Tree* x = new Tree();
     x->leaves = left.leaves;
-    x->bark = left.bark - floor(right.heat*0.30);
-    std::cout << "\nThe fire has burned " << floor(right.heat*0.30) << " bark away and turned it into fuel!\n";
+    x->bark = left.bark - ceil(right.heat*0.40);
+    std::cout << "\nThe fire has burned " << ceil(right.heat*0.40) << " bark away and turned it into fuel!\n";
     system("pause");
     system("cls");
-    right.fuel += (right.heat > 3 ) ? floor(right.heat*0.30) : ceil(right.heat * 0.30);
-    right.heat += ceil(right.fuel*0.3);
+    right.fuel += ceil(right.heat * 0.40);
+    right.heat += ceil(right.fuel*0.40);
     return *x;
 }
 
@@ -89,7 +89,7 @@ Tree operator * (const Tree& left, const Fire& right) {
     Tree* x = new Tree();
     x->leaves = floor(left.leaves * 0.5);
     x->bark = left.bark;
-    std::cout << "\nThe fire has burned " << floor(left.leaves * 0.5) << " leaves!\n";
+    std::cout << "\nThe embers from the fire have burned " << floor(left.leaves * 0.5) << " leaves!\n";
     system("pause");
     system("cls");
     return *x;
@@ -100,7 +100,7 @@ Water operator * (Tree& left, const Water& right) {
     Water* x = new Water();
     x->liquid = right.liquid + amount;
     x->ice = right.ice;
-    left.leaves -= 16*amount;
+    left.leaves -= 16*amount; // 16:1 is the conversion ratio, so it multiplies it by 16
     std::cout << "\nYou have converted " << 16*amount << " leaves into " << amount << " liquid!\n";
     system("pause");
     system("cls");
@@ -123,7 +123,7 @@ Tree operator && (const Tree& left, Fire& right) {
     Tree* x = new Tree();
     x->leaves = 0;
     x->bark = 0;
-    right.fuel += left.bark * 1.1;
+    right.fuel += left.bark;
     std::cout << "\nThe fire has burned away the entire tree!\n";
     system("pause");
     system("cls");
@@ -225,10 +225,37 @@ Water operator + (const Water& left, const Water& right) {
 // Water += Water // Collects a random amount of Liquid
 Water operator += (const Water& left, const Water& right) {
     Water* x = new Water();
-    randomNumber = randomRange(2, 6);
-    x->liquid = left.liquid + randomNumber;
+    // randomNumber = randomRange(2, 6); // This is using the standard random function
+    randomNumber = randomRange(1, 10); // This uses percentages and makes it more likely to gather the middle amount than the others
+    if (randomNumber == 1) { amount = 2; }
+    else if ((randomNumber == 2) || (randomNumber == 3)) { amount = 3; }
+    else if ((randomNumber == 4) || (randomNumber == 5) || (randomNumber == 6) || (randomNumber == 7)) { amount = 4; }
+    else if ((randomNumber == 8) || (randomNumber == 9)) { amount = 5; }
+    else if (randomNumber == 10) { amount = 6; }
+    x->liquid = left.liquid + amount;
     x->ice = left.ice;
-    std::cout << "\nYou went to a nearby river and managed to collect " << randomNumber << " liquid\n";
+    std::cout << "\nYou went to a nearby river and managed to collect " << amount << " liquid\n";
+    system("pause");
+    system("cls");
+    return *x;
+}
+// Fire / Water // Uses Liquid to get rid of Fuel 
+Fire operator / (const Fire& left, Water& right) {
+    Fire* x = new Fire();
+    x->heat = left.heat;
+    x->fuel = left.fuel - amount / 4;
+    right.liquid -= amount;
+    std::cout << "\nYou have used " << amount << " liquid to remove " << amount / 4 << " fuel!\n";
+    system("pause");
+    system("cls");
+    return *x;
+}
+
+Magic operator && (const Magic& left, Water& right) {
+    Magic* x = new Magic();
+    x->mana = left.mana - 5;
+    right.liquid += randomRange(8, 12);
+    std::cout << "\nYou have converted 5 mana into some liquid!\n";
     system("pause");
     system("cls");
     return *x;
@@ -237,6 +264,7 @@ Water operator += (const Water& left, const Water& right) {
 
 int main()
 {
+    // Keeps the main menu up while the game hasn't ended in either a win or a loss
     while ((tree.bark > 0) && (fire.heat > 0) && (fire.fuel > 0)) {
         mainMenu();
         roundNumber++;
@@ -273,7 +301,7 @@ void mainMenu() {
         i -= continueNumber;
     }
 
-    if ((fire.heat != 0) && (fire.fuel != 0)) {
+    if ((fire.heat != 0) && (fire.fuel != 0)) { // Ensures that it cannot remove bark after the fire is already out
         system("cls");
         printResources();
         // This function removes a percentage of bark based on heat
@@ -354,7 +382,8 @@ void fireMenu() {
         printResources();
         std::cout << "What would you like to do? (Input a number 1-2)\n"
             << "1. Sacrifice the Tree to the Fire\n"
-            << "2. Back\n\n";
+            << "2. Use Liquid to remove Fuel\n"
+            << "3. Back\n\n";
         std::cin >> userInput;
         if (userInput == "1") {
             // Asks the user just in case they don't want to end the game
@@ -366,7 +395,15 @@ void fireMenu() {
             }
             if (userInput == "YES") { tree = tree && fire; break; } // Willingly sacrificing the entire tree to Fire
         }
-        else if (userInput == "2") { continueNumber++; break; }
+        else if (userInput == "2") {
+            std::cout << "How much would you like to convert (4:1): ";
+            std::cin >> amount;
+            // Checks to see if the amount selected is more than the amount you own, and also makes sure you don't end the game by converting too much bark
+            if (water.liquid - amount < 0) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            else if (amount % 4 != 0) { std::cout << "\nThe amount you select must be an increment of 4\n"; system("pause"); }
+            else if (water.liquid >= amount) { fire = fire / water; break; } // Using Liquid to get rid of Fuel
+        }
+        else if (userInput == "3") { continueNumber++; break; }
     }
 }
 
@@ -423,24 +460,27 @@ void magicMenu() {
         if (magic.mana >= 5) {
             // Checks if the input was a variation of YES (yes, YeS, etc)
             if (userInput == "YES") {
-                int randInput = randomRange(0, 9);
+                int randInput = randomRange(0, 11);
                 // Gets a random number and chooses a operation at random
                 switch (randInput) {
                 case(0):
                 case(5):
                 case(8):
-                    tree = tree + magic; break; // 30% // Transfering a bit of Mana to Bark
+                    tree = tree + magic; break;     // Transfering a bit of Mana to Bark
                 case(1):
                 case(6):
-                    magic = magic + fire; break; // 20% // Removes a bit of Mana and Fuel
+                    magic = magic + fire; break;    // Removes a bit of Mana and Fuel
                 case(2):
                 case(7):
                 case(9):
-                    water = magic + water; break; // 30% // Transfers a bit of Mana into Ice
+                    water = magic + water; break;   // Transfers a bit of Mana into Ice
                 case(3):
-                    fire = magic * fire; break; // 10% // Transfers Mana into Heat
+                    fire = magic * fire; break;     // Transfers Mana into Heat
                 case(4):
-                    fire = magic && fire; break; // 10% // Transfers Mana into Fuel
+                    fire = magic && fire; break;    // Transfers Mana into Fuel
+                case(10):
+                case(11):
+                    magic = magic && water;         // Transfers Mana into Liquid
                 }
                 break;
             }
