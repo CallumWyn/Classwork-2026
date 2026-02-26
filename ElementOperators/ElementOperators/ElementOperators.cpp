@@ -20,6 +20,7 @@ int amount = 1;
 int roundNumber = 1;
 int turnNumber = 1;
 int randomNumber;
+int continueNumber;
 
 
 
@@ -54,7 +55,7 @@ Tree operator + (const Tree& left, Fire& right) {
     std::cout << "\nThe fire has burned " << floor(right.heat*0.30) << " bark away and turned it into fuel!\n";
     system("pause");
     system("cls");
-    right.fuel += floor(right.heat*0.30);
+    right.fuel += (right.heat > 3 ) ? floor(right.heat*0.30) : ceil(right.heat * 0.30);
     right.heat += ceil(right.fuel*0.2);
     return *x;
 }
@@ -132,10 +133,10 @@ Tree operator && (const Tree& left, Fire& right) {
 // Tree && Water // Transfering a bit of Bark into Liquid
 Water operator && (Tree& left, const Water& right) {
     Water* x = new Water();
-    x->liquid = right.liquid + amount/3;
+    x->liquid = right.liquid + amount/2;
     x->ice = right.ice;
     left.bark -= amount;
-    std::cout << "\nYou have converted " << amount << " bark into " << amount/3 << " liquid!\n";
+    std::cout << "\nYou have converted " << amount << " bark into " << amount/2 << " liquid!\n";
     system("pause");
     system("cls");
     return *x;
@@ -157,7 +158,7 @@ Water operator + (Fire& left, const Water& right) {
     Water* x = new Water();
     x->liquid = right.liquid + amount;
     x->ice = right.ice - amount;
-    left.heat /= 1 + (0.10*amount);
+    left.heat -= amount;
     std::cout << "\nYou have reduced the heat of the fire by using " << amount << " ice, and got " << amount << " liquid!\n";
     system("pause");
     system("cls");
@@ -179,7 +180,7 @@ Magic operator + (const Magic& left,  Fire& right) {
 Water operator + (Magic& left, const Water& right) {
     Water* x = new Water();
     x->liquid = right.liquid;
-    x->ice = right.ice + randomRange(1,6);
+    x->ice = right.ice + randomRange(2,6);
     left.mana -= 5;
     std::cout << "\nYou have converted 5 mana into some ice!\n";
     system("pause");
@@ -221,6 +222,17 @@ Water operator + (const Water& left, const Water& right) {
     system("cls");
     return *x;
 }
+// Water += Water // Collects a random amount of Liquid
+Water operator += (const Water& left, const Water& right) {
+    Water* x = new Water();
+    randomNumber = randomRange(2, 6);
+    x->liquid = left.liquid + randomNumber;
+    x->ice = left.ice;
+    std::cout << "\nYou went to a nearby river and managed to collect " << randomNumber << " liquid\n";
+    system("pause");
+    system("cls");
+    return *x;
+}
 
 
 int main()
@@ -231,11 +243,19 @@ int main()
         roundNumber++;
     }
 
+    if (fire.heat <= 0 || fire.fuel <= 0) {
+        std::cout << "\nYou Win!";
+    }
+    if (tree.bark <= 0) {
+        std::cout << "\nGame Over!";
+    }
+
 }
 
 
 void mainMenu() {
     for (int i = 1; i < 6; i++) { // I made this a for loop so that you can have multiple turns in a round
+        continueNumber = 0;
         turnNumber = i;
         system("cls");
         printResources();
@@ -249,24 +269,28 @@ void mainMenu() {
         if (userInput == "1") { treeMenu(); }
         else if (userInput == "2") { fireMenu(); }
         else if (userInput == "3") { waterMenu(); }
-        else if (userInput == "4") { magicMenu(); break; }
-        else if (userInput == "5") { break; } // Need a function for continue as well
+        else if (userInput == "4") { magicMenu(); }
+        else if (userInput == "5") { break; }
         else { i -= 1; continue; }
+        i -= continueNumber;
     }
 
-    system("cls");
-    printResources();
-    // This function removes a percentage of bark based on heat
-    tree = tree + fire;
-    randomNumber = randomRange(1, 10);
-    // Gets a random number and has a 20% chance of running tree * fire
-    switch (randomNumber) {
-    case(10):
-    case(9):
-        tree = tree * fire;
+    if ((fire.heat != 0) && (fire.fuel != 0)) {
+        system("cls");
+        printResources();
+        // This function removes a percentage of bark based on heat
+        tree = tree + fire;
+        randomNumber = randomRange(1, 10);
+        // Gets a random number and has a 20% chance of running tree * fire
+        switch (randomNumber) {
+        case(10):
+        case(9):
+            tree = tree * fire;
+        }
     }
 }
 
+// Either need to turn these into int functions and return -1 if back is selected, or make a new variable to deal with it
 void treeMenu() {
     while (true) {
         system("cls");
@@ -284,7 +308,7 @@ void treeMenu() {
             std::cin >> amount; 
             // Checks to see if the amount selected is more than the amount you own
             if (water.liquid < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
-            else if (water.liquid >= amount) { tree = tree + water; break; }
+            else if (water.liquid >= amount) { tree = tree + water; break; } // Transfering Liquid to Bark and Leaves
         }
         else if (userInput == "2") {
             std::cout << "How much would you like to convert (16:1): ";
@@ -294,7 +318,7 @@ void treeMenu() {
             // Also checks to see if it is a multiple of 16, as 16 leaves turn into 1 liquid, but 24 leaves does not turn into 1.5 liquid
             else if (amount % 16 != 0) { std::cout << "\nThe amount you select must be an increment of 16\n"; system("pause"); }
             // Divides amount by 16 so it can be used correctly in the equation
-            else if (tree.leaves >= amount) { amount /= 16; water = tree * water; break; }
+            else if (tree.leaves >= amount) { amount /= 16; water = tree * water; break; } // Transfering a few Leaves into a bit of Liquid
         }
         else if (userInput == "3") {
             std::cout << "How much would you like to convert (16:1): ";
@@ -304,24 +328,24 @@ void treeMenu() {
             // Also checks to see if it is a multiple of 16, as 16 leaves turn into 1 liquid, but 24 leaves does not turn into 1.5 liquid
             else if (amount % 16 != 0) { std::cout << "\nThe amount you select must be an increment of 16\n"; system("pause"); }
             // Divides amount by 16 so it can be used correctly in the equation
-            else if (tree.leaves >= amount) { amount /= 16; magic = tree * magic; break; }
+            else if (tree.leaves >= amount) { amount /= 16; magic = tree * magic; break; } // Transfering Leaves to a bit of Mana
         }
         else if (userInput == "4") {
             std::cout << "How much would you like to convert: ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own, and also makes sure you don't end the game by converting too much bark
             if ((tree.bark < amount) || (tree.bark - amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
-            else if (tree.bark >= amount) { magic = tree && magic; break; }
+            else if (tree.bark >= amount) { magic = tree && magic; break; } // Transfering Bark into Mana
         }
         else if (userInput == "5") {
-            std::cout << "How much would you like to convert (3:1): ";
+            std::cout << "How much would you like to convert (2:1): ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own, and also makes sure you don't end the game by converting too much bark
             if ((tree.bark < amount) || (tree.bark - amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
-            else if (amount % 3 != 0) { std::cout << "\nThe amount you select must be an increment of 3\n"; system("pause"); }
-            else if (tree.bark >= amount) { water = tree && water; break; }
+            else if (amount % 2 != 0) { std::cout << "\nThe amount you select must be an increment of 2\n"; system("pause"); }
+            else if (tree.bark >= amount) { water = tree && water; break; } // Transfering a bit of Bark into Liquid
         }
-        else if (userInput == "6") { break; }
+        else if (userInput == "6") { continueNumber++; break; }
     }
     
 }
@@ -335,14 +359,16 @@ void fireMenu() {
             << "2. Back\n\n";
         std::cin >> userInput;
         if (userInput == "1") {
+            // Asks the user just in case they don't want to end the game
             std::cout << "Are you sure? This will end the game (Input Yes or No): ";
             std::cin >> userInput;
+            // Sets all the letters in the string to upper case
             for (auto& i : userInput) {
                 i = toupper(i);
             }
-            if (userInput == "YES") { tree = tree && fire; break; }
+            if (userInput == "YES") { tree = tree && fire; break; } // Willingly sacrificing the entire tree to Fire
         }
-        else if (userInput == "2") { break; }
+        else if (userInput == "2") { continueNumber++; break; }
     }
 }
 
@@ -353,14 +379,15 @@ void waterMenu() {
         std::cout << "What would you like to do? (Input a number 1-3)\n"
             << "1. Turn Ice and Heat into Liquid\n"
             << "2. Turn Liquid into Ice\n"
-            << "3. Back\n\n";
+            << "3. Collect Liquid\n"
+            << "4. Back\n\n";
         std::cin >> userInput;
         if (userInput == "1") {
             std::cout << "How much would you like to convert: ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own
             if (water.ice < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
-            else if (water.ice >= amount) { water = fire + water; break; }
+            else if (water.ice >= amount) { water = fire + water; break; } // Transfering Ice and Heat into Liquid
         }
         else if (userInput == "2") {
             std::cout << "How much would you like to convert (4:1): ";
@@ -368,9 +395,13 @@ void waterMenu() {
             // Checks to see if the amount selected is more than the amount you own
             if (water.liquid < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (amount % 4 != 0) { std::cout << "\nThe amount you select must be an increment of 4\n"; system("pause"); }
-            else if (water.liquid >= amount) { amount /= 4; water = water + water; break; }
+            else if (water.liquid >= amount) { amount /= 4; water = water + water; break; } // Turns Liquid into Ice
         }
-        else if (userInput == "3") { break; }
+        else if (userInput == "3") {
+            water = water += water; // Collects a random amount of Liquid
+            break;
+        }
+        else if (userInput == "4") { continueNumber++; break; }
     }
 }
 
@@ -384,7 +415,7 @@ void magicMenu() {
     while (true) {
         system("cls");
         printResources();
-        std::cout << "Are you sure you want to end your round and 5 mana on a random magic action? (Yes/No)\n";
+        std::cout << "Are you sure you want to use 5 mana on a random magic action? (Yes/No)\n";
         std::cin >> userInput;
         // Sets the string to full caps
         for (auto& i : userInput) {
@@ -400,24 +431,24 @@ void magicMenu() {
                 case(0):
                 case(5):
                 case(8):
-                    tree = tree + magic; break; // 30%
+                    tree = tree + magic; break; // 30% // Transfering a bit of Mana to Bark
                 case(1):
                 case(6):
-                    magic = magic + fire; break; // 20%
+                    magic = magic + fire; break; // 20% // Removes a bit of Mana and Fuel
                 case(2):
                 case(7):
                 case(9):
-                    water = magic + water; break; // 30%
+                    water = magic + water; break; // 30% // Transfers a bit of Mana into Ice
                 case(3):
-                    fire = magic * fire; break; // 10%
+                    fire = magic * fire; break; // 10% // Transfers Mana into Heat
                 case(4):
-                    fire = magic && fire; break; // 10%
+                    fire = magic && fire; break; // 10% // Transfers Mana into Fuel
                 }
                 break;
             }
-            if (userInput == "NO") { break; }
+            if (userInput == "NO") { continueNumber++; break; }
         }
-        else { std::cout << "\nYou do not have enough mana"; break; }
+        else { std::cout << "\nYou do not have enough mana"; continueNumber++; break; }
     }
 }
 
@@ -431,7 +462,7 @@ void printResources() {
         << "MAGIC: " << magic.mana << " Mana\n\n\n";
 }
 
-int randomRange(int min, int max) {
+int randomRange(int min, int max) { // Just a function I use to generate random numbers whenever I need them
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> distrib(min, max);
