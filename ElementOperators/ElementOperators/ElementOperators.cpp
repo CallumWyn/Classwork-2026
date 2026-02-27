@@ -337,14 +337,14 @@ void treeMenu() {
             std::cout << "How much would you like to convert: "; 
             std::cin >> amount; 
             // Checks to see if the amount selected is more than the amount you own
-            if (water.liquid < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((water.liquid < amount) || (amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (water.liquid >= amount) { tree = tree + water; break; } // Transfering Liquid to Bark and Leaves
         }
         else if (userInput == "2") {
             std::cout << "How much would you like to convert (16:1): ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own
-            if (tree.leaves < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((tree.leaves < amount) || (amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             // Also checks to see if it is a multiple of 16, as 16 leaves turn into 1 liquid, but 24 leaves does not turn into 1.5 liquid
             else if (amount % 16 != 0) { std::cout << "\nThe amount you select must be an increment of 16\n"; system("pause"); }
             // Divides amount by 16 so it can be used correctly in the equation
@@ -354,7 +354,7 @@ void treeMenu() {
             std::cout << "How much would you like to convert (16:1): ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own
-            if (tree.leaves < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((tree.leaves < amount) || (amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             // Also checks to see if it is a multiple of 16, as 16 leaves turn into 1 liquid, but 24 leaves does not turn into 1.5 liquid
             else if (amount % 16 != 0) { std::cout << "\nThe amount you select must be an increment of 16\n"; system("pause"); }
             // Divides amount by 16 so it can be used correctly in the equation
@@ -364,14 +364,14 @@ void treeMenu() {
             std::cout << "How much would you like to convert: ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own, and also makes sure you don't end the game by converting too much bark
-            if ((tree.bark < amount) || (tree.bark - amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((tree.bark < amount) || (amount <= 0) || (tree.bark - amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (tree.bark >= amount) { magic = tree && magic; break; } // Transfering Bark into Mana
         }
         else if (userInput == "5") {
             std::cout << "How much would you like to convert (2:1): ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own, and also makes sure you don't end the game by converting too much bark
-            if ((tree.bark < amount) || (tree.bark - amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((tree.bark < amount) || (amount <= 0) || (tree.bark - amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (amount % 2 != 0) { std::cout << "\nThe amount you select must be an increment of 2\n"; system("pause"); }
             else if (tree.bark >= amount) { water = tree && water; break; } // Transfering a bit of Bark into Liquid
         }
@@ -403,7 +403,7 @@ void fireMenu() {
             std::cout << "How much would you like to convert (4:1): ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own, and also makes sure you don't end the game by converting too much bark
-            if (water.liquid - amount < 0) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((water.liquid < amount) || (amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (amount % 4 != 0) { std::cout << "\nThe amount you select must be an increment of 4\n"; system("pause"); }
             else if (water.liquid >= amount) { fire = fire / water; break; } // Using Liquid to get rid of Fuel
         }
@@ -425,14 +425,14 @@ void waterMenu() {
             std::cout << "How much would you like to convert: ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own
-            if (water.ice < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((water.ice < amount) || (amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (water.ice >= amount) { water = fire + water; break; } // Transfering Ice and Heat into Liquid
         }
         else if (userInput == "2") {
             std::cout << "How much would you like to convert (4:1): ";
             std::cin >> amount;
             // Checks to see if the amount selected is more than the amount you own
-            if (water.liquid < amount) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
+            if ((water.liquid < amount) || (amount <= 0)) { std::cout << "\nYou do not have enough of this resource to convert\n"; system("pause"); }
             else if (amount % 4 != 0) { std::cout << "\nThe amount you select must be an increment of 4\n"; system("pause"); }
             else if (water.liquid >= amount) { amount /= 4; water = water + water; break; } // Turns Liquid into Ice
         }
