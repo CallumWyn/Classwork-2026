@@ -169,7 +169,7 @@ Water operator + (Fire& left, const Water& right) {
 Magic operator + (const Magic& left,  Fire& right) {
     Magic* x = new Magic();
     x->mana = left.mana - 5;
-    right.fuel -= randomRange(2,4);
+    right.fuel -= randomRange(1,2);
     std::cout << "\nYou have used 5 mana to get rid of some fuel!\n";
     system("pause");
     system("cls");
@@ -222,6 +222,7 @@ Water operator + (const Water& left, const Water& right) {
     system("cls");
     return *x;
 }
+
 // Water += Water // Collects a random amount of Liquid
 Water operator += (const Water& left, const Water& right) {
     Water* x = new Water();
@@ -239,6 +240,7 @@ Water operator += (const Water& left, const Water& right) {
     system("cls");
     return *x;
 }
+
 // Fire / Water // Uses Liquid to get rid of Fuel 
 Fire operator / (const Fire& left, Water& right) {
     Fire* x = new Fire();
@@ -251,6 +253,7 @@ Fire operator / (const Fire& left, Water& right) {
     return *x;
 }
 
+// Magic && Water // Turns Mana into Liquid
 Magic operator && (const Magic& left, Water& right) {
     Magic* x = new Magic();
     x->mana = left.mana - 5;
@@ -261,7 +264,6 @@ Magic operator && (const Magic& left, Water& right) {
     return *x;
 }
 
-
 int main()
 {
     // Keeps the main menu up while the game hasn't ended in either a win or a loss
@@ -271,13 +273,12 @@ int main()
     }
 
     if (fire.heat <= 0 || fire.fuel <= 0) {
-        std::cout << "\nYou Win!";
+        std::cout << "\nYou Win!\n";
     }
     if (tree.bark <= 0) {
-        std::cout << "\nGame Over!";
+        std::cout << "\nGame Over!\n";
     }
 }
-
 
 void mainMenu() {
     for (int i = 1; i < 6; i++) { // I made this a for loop so that you can have multiple turns in a round
@@ -299,6 +300,9 @@ void mainMenu() {
         else if (userInput == "5") { break; }
         else { i -= 1; continue; }
         i -= continueNumber;
+
+        // Ends the menu loop if fire runs out of heat or fuel
+        if ((fire.heat <= 0) || (fire.fuel <= 0)) { break; }
     }
 
     if ((fire.heat != 0) && (fire.fuel != 0)) { // Ensures that it cannot remove bark after the fire is already out
@@ -457,9 +461,9 @@ void magicMenu() {
             i = toupper(i);
         }
         // Checks if the player has enough mana
-        if (magic.mana >= 5) {
+        if (userInput == "YES") {
             // Checks if the input was a variation of YES (yes, YeS, etc)
-            if (userInput == "YES") {
+            if (magic.mana >= 5) {
                 int randInput = randomRange(0, 11);
                 // Gets a random number and chooses a operation at random
                 switch (randInput) {
@@ -480,13 +484,13 @@ void magicMenu() {
                     fire = magic && fire; break;    // Transfers Mana into Fuel
                 case(10):
                 case(11):
-                    magic = magic && water;         // Transfers Mana into Liquid
+                    magic = magic && water; break;  // Transfers Mana into Liquid
                 }
                 break;
             }
-            if (userInput == "NO") { continueNumber++; break; }
+            else { std::cout << "\nYou do not have enough mana\n"; system("pause"); continueNumber++; break; }
         }
-        else { std::cout << "\nYou do not have enough mana"; continueNumber++; break; }
+        else if (userInput == "NO") { continueNumber++; break; }
     }
 }
 
