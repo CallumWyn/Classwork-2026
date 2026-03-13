@@ -149,7 +149,9 @@ struct Vector3 {
         return Vector3(x / Magnitude(), y / Magnitude(), z / Magnitude());
     }
 
-    Vector3 Dot() {}
+    float Dot(Vector3 v) {
+        return x * v.x + y * v.y + z * v.z;
+    }
 
     Vector3 Cross() {}
 
@@ -225,10 +227,10 @@ struct Color {
 
 int main()
 {
-    Vector3 a(13.5f, -48.23f, 862);
-    Vector3 b(1, 2, 3);
+    Vector3 a(2, 3, 1);
+    Vector3 b(-1, 0, -1);
 
-    std::cout << a.Magnitude() << "\n";
+    std::cout << a.Dot(b) << "\n";
 
     a.Normalise();
 
