@@ -1,6 +1,9 @@
 
 #include <iostream>
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 struct Vector3 {
     float x, y, z;
 
@@ -171,9 +174,25 @@ struct Vector3 {
         return false;
     }
 
+    float AngleBetween(Vector3 v) {
+        float cos = (Dot(v)) / (Magnitude() * v.Magnitude());
+        cos = acos(cos);
 
+        return cos;
+    }
 
-    
+    float Distance(Vector3 v) {
+        Vector3 *v2 = new Vector3;
+        v2->x = -x + v.x;
+        v2->y = -y + v.y;
+        v2->z = -z + v.z;
+        return v2->Magnitude();
+
+    }
+
+    float Angle2D() {
+        return atan2(y, x) * (180/M_PI); // Multiplies arctan by 180/PI to convert it into degrees
+    }
 
 };
 
@@ -242,18 +261,11 @@ void print(Vector3 v);
 
 int main()
 {
-    Vector3 a(13.5, -48.23, 862);
-    Vector3 b(5, 3.99, -12);
+    Vector3 a(1, 20, 3);
+    Vector3 b(-7, -4, -5);
 
-    std::cout << a.Dot(b) << "\n";
 
-    // a.Normalise();
-
-    print(a.Cross(b));
-
-    
-
-    std::cout << a.Cross(b).IsApproximatelyEqual(Vector3(-2860.62011719f, 4472.00000000f, 295.01498413f));
+    std::cout << a.Angle2D();
     //std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
 
 }
