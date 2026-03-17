@@ -153,9 +153,23 @@ struct Vector3 {
         return x * v.x + y * v.y + z * v.z;
     }
 
-    Vector3 Cross() {}
+    Vector3 Cross(Vector3 v1) {
+        Vector3 *v3 = new Vector3;
+        v3->x = (y * v1.z) - (z * v1.y);
+        v3->y = (z * v1.x) - (x * v1.z);
+        v3->z = (x * v1.y) - (y * v1.x);
+        return *v3;
+    }
 
+    bool IsApproximatelyEqual(Vector3 v) {
 
+        
+        if (//   Checks if v.x is between x +- 1e-4            Checks if v.y is between y +- 1e-4            Checks if v.z is between z +- 1e-4
+            ((x - 1e-4) <= v.x) && ((x + 1e-4) >= v.x)  && ((y - 1e-4) <= v.y) && ((y + 1e-4) >= v.y) && ((z - 1e-4) <= v.z) && ((z + 1e-4) >= v.z)) {
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -223,21 +237,31 @@ struct Color {
 
 };
 
+void print(Vector3 v);
 
 
 int main()
 {
-    Vector3 a(2, 3, 1);
-    Vector3 b(-1, 0, -1);
+    Vector3 a(13.5, -48.23, 862);
+    Vector3 b(5, 3.99, -12);
 
     std::cout << a.Dot(b) << "\n";
 
-    a.Normalise();
+    // a.Normalise();
 
-    std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
+    print(a.Cross(b));
+
+    
+
+    std::cout << a.Cross(b).IsApproximatelyEqual(Vector3(-2860.62011719f, 4472.00000000f, 295.01498413f));
+    //std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
 
 }
 
 
-
+void print(Vector3 v) {
+    std::cout << "\n" << v.x << "\n";
+    std::cout << v.y << "\n";
+    std::cout << v.z << "\n";
+}
 
