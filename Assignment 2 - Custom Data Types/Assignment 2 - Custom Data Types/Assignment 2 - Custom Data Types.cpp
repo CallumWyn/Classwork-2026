@@ -444,6 +444,8 @@ int main()
 
     //std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
 
+    
+
 }
 
 
@@ -458,4 +460,5 @@ void print(Vector4 v) {
     std::cout << v.z << "\n";
     std::cout << v.w << "\n";
 }
+
 
