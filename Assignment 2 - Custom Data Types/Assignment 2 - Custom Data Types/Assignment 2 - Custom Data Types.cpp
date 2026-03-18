@@ -101,10 +101,17 @@ struct Vector3 {
         return *this;
     }
 
-    Vector3 operator /= (Vector3 v) {   // Division Assignment
-        x /= v.x;
-        y /= v.y;
-        z /= v.z;
+    Vector3 operator *= (float f) {   // Multiplication Assignment
+        x *= f;
+        y *= f;
+        z *= f;
+        return *this;
+    }
+
+    Vector3 operator /= (float f) {   // Division Assignment
+        x /= f;
+        y /= f;
+        z /= f;
         return *this;
     }
 
@@ -126,6 +133,12 @@ struct Vector3 {
     }
 
     float& operator [] (int i) {
+        if (i == 0) { return x; }
+        else if (i == 1) { return y; }
+        else if (i == 2) { return z; }
+    }
+
+    const float& operator [] (int i) const {
         if (i == 0) { return x; }
         else if (i == 1) { return y; }
         else if (i == 2) { return z; }
@@ -303,10 +316,17 @@ struct Vector4 {
         return *this;
     }
 
-    Vector4 operator /= (Vector4 v) {   // Division Assignment
-        x /= v.x;
-        y /= v.y;
-        z /= v.z;
+    Vector4 operator *= (float f) {   // Multiplication Assignment
+        x *= f;
+        y *= f;
+        z *= f;
+        return *this;
+    }
+
+    Vector4 operator /= (float f) {   // Division Assignment
+        x /= f;
+        y /= f;
+        z /= f;
         return *this;
     }
 
@@ -328,6 +348,13 @@ struct Vector4 {
     }
 
     float& operator [] (int i) {
+        if (i == 0) { return x; }
+        else if (i == 1) { return y; }
+        else if (i == 2) { return z; }
+        else if (i == 3) { return w; }
+    }
+
+    const float& operator [] (int i) const {
         if (i == 0) { return x; }
         else if (i == 1) { return y; }
         else if (i == 2) { return z; }
@@ -438,9 +465,12 @@ int main()
     Vector4 a(1, 20, 3, 1);
     Vector4 b(-7, -4, -5, 51);
 
+    const Vector3 c(1, 5, 8);
+
     a += b;
 
     print(a);
+    std::cout << c[1];
 
     //std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
 
