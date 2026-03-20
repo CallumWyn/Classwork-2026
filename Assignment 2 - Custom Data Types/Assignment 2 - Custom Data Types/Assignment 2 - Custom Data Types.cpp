@@ -116,10 +116,11 @@ struct Vector3 {
     }
 
     Vector3 operator - () {             // Negative
-        x *= -1;
-        y *= -1;
-        z *= -1;
-        return *this;
+        Vector3* v = new Vector3;
+        v->x = x * -1;
+        v->y = y * -1;
+        v->z = z * -1;
+        return *v;
     }
 
     bool operator == (Vector3 v) {      // Equality
@@ -423,7 +424,43 @@ struct Vector4 {
 };
 
 struct Matrix3 {
+    float m1, m2, m3, m4, m5, m6, m7, m8, m9;
 
+    Matrix3() {     // Default Constructor
+        m1 = 1;
+        m2 = 0;
+        m3 = 0;
+        m4 = 0;
+        m5 = 1;
+        m6 = 0;
+        m7 = 0;
+        m8 = 0;
+        m9 = 1;
+    }
+
+    Matrix3(const Matrix3& m) {     // Copy Constructor
+        m1 = m.m1;
+        m2 = m.m2;
+        m3 = m.m3;
+        m4 = m.m4;
+        m5 = m.m5;
+        m6 = m.m6;
+        m7 = m.m7;
+        m8 = m.m8;
+        m9 = m.m9;
+    }
+
+    Matrix3(float ma1, float ma2, float ma3, float ma4, float ma5, float ma6, float ma7, float ma8, float ma9) {    // Parameterised Constructor
+        m1 = ma1;
+        m2 = ma2;
+        m3 = ma3;
+        m4 = ma4;
+        m5 = ma5;
+        m6 = ma6;
+        m7 = ma7;
+        m8 = ma8;
+        m9 = ma9;
+    }
 };
 
 struct Matrix4 {
@@ -465,12 +502,15 @@ int main()
     Vector4 a(1, 20, 3, 1);
     Vector4 b(-7, -4, -5, 51);
 
-    const Vector3 c(1, 5, 8);
+    Vector3 c(1500, 1500, 0);
+    Vector3 d(1400, 1400, 0);
 
     a += b;
 
-    print(a);
-    std::cout << c[1];
+    std::cout << (c.Dot(d));
+    std::cout << "\n" << c.Magnitude() * d.Magnitude() * cos(c.AngleBetween(d));
+    std::cout << "\n" << (c.AngleBetween(d));
+    //std::cout << c[1];
 
     //std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
 
