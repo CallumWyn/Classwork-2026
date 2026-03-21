@@ -468,27 +468,21 @@ struct Matrix4 {
 };
 
 struct Color {
-    unsigned int R, G, B, A;
+    unsigned int rgba = 0;
 
     Color() { // Default Constructor
-        R = 0;
-        G = 0;
-        B = 0;
-        A = 255;
+        rgba = 255;
     }
 
     Color(Color& x) { // Copy Constructor
-        R = x.R;
-        G = x.G;
-        B = x.B;
-        A = x.A;
+        rgba = x.rgba;
     }
 
-    Color(unsigned int red, unsigned int green, unsigned int blue, unsigned int alpha) { // Parameterised Constructor
-        R = red;
-        G = green;
-        B = blue;
-        A = alpha;
+    Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) { // Parameterised Constructor
+        rgba |= red << 24;
+        rgba |= green << 16;
+        rgba |= blue << 8;
+        rgba |= alpha;
     }
 
 };
@@ -499,17 +493,24 @@ void print(Vector4 v);
 
 int main()
 {
-    Vector4 a(1, 20, 3, 1);
-    Vector4 b(-7, -4, -5, 51);
+    //Vector4 a(1, 20, 3, 1);
+    //Vector4 b(-7, -4, -5, 51);
 
-    Vector3 c(1500, 1500, 0);
-    Vector3 d(1400, 1400, 0);
+    //Vector3 c(1500, 1500, 0);
+    //Vector3 d(1400, 1400, 0);
 
-    a += b;
+    Color col(32, 64, 0, 255);
+    
 
-    std::cout << (c.Dot(d));
+    /*a += b;*/
+
+
+
+    std::cout << col.rgba;
+
+    /*std::cout << (c.Dot(d));
     std::cout << "\n" << c.Magnitude() * d.Magnitude() * cos(c.AngleBetween(d));
-    std::cout << "\n" << (c.AngleBetween(d));
+    std::cout << "\n" << (c.AngleBetween(d));*/
     //std::cout << c[1];
 
     //std::cout << a.x << " - " << a.y << " - " << a.z << "\n";
