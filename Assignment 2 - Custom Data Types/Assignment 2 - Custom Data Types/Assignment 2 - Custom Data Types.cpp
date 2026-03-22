@@ -485,6 +485,49 @@ struct Color {
         rgba |= alpha;
     }
 
+    unsigned char GetRed() const {
+        return rgba >> 24;
+    }
+
+    void SetRed(unsigned char red) {
+        rgba &= 0xFFFFFF;
+        rgba |= red << 24;
+    }
+
+    unsigned char GetGreen() const {
+        return rgba >> 16 & 0xFF;
+    }
+
+    void SetGreen(unsigned char green) {
+        rgba &= 0xFF00FFFF;
+        rgba |= green << 16;
+    }
+
+    unsigned char GetBlue() const {
+        return rgba >> 8 & 0xFF;
+    }
+
+    void SetBlue(unsigned char blue) {
+        rgba &= 0xFFFF00FF;
+        rgba |= blue << 8;
+    }
+
+    unsigned char GetAlpha() const {
+        return rgba & 0xFF;
+    }
+
+    void SetAlpha(unsigned char alpha) {
+        rgba &= 0xFFFFFF00;
+        rgba |= alpha;
+    }
+
+    bool operator == (Color c) const {
+        if (rgba == c.rgba) {
+            return true;
+        }
+        return false;
+    }
+
 };
 
 void print(Vector3 v);
@@ -500,13 +543,21 @@ int main()
     //Vector3 d(1400, 1400, 0);
 
     Color col(32, 64, 0, 255);
+    Color col2(32, 64, 0, 255);
     
 
     /*a += b;*/
 
 
+    std::cout << (col == col2) << '\n';
+    std::cout << (int)col.GetAlpha() << "\n";
+    col.SetAlpha(128);
 
-    std::cout << col.rgba;
+    std::cout << (int)col.GetRed() << '\n';
+    std::cout << (int)col.GetGreen() << '\n';
+    std::cout << (int)col.GetBlue() << '\n';
+    std::cout << (int)col.GetAlpha();
+
 
     /*std::cout << (c.Dot(d));
     std::cout << "\n" << c.Magnitude() * d.Magnitude() * cos(c.AngleBetween(d));
