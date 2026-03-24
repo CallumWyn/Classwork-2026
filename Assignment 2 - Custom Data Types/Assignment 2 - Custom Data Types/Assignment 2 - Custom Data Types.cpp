@@ -461,6 +461,60 @@ struct Matrix3 {
         m8 = ma8;
         m9 = ma9;
     }
+
+    Matrix3 operator = (Matrix3 m) {        // Assignment
+        m1 = m.m1;
+        m2 = m.m2;
+        m3 = m.m3;
+        m4 = m.m4;
+        m5 = m.m5;
+        m6 = m.m6;
+        m7 = m.m7;
+        m8 = m.m8;
+        m9 = m.m9;
+        return *this;
+    }
+
+    Vector3 operator * (Vector3 v) {        // Multiply by Vector
+        return (Vector3(m1, m2, m3) * v.x) + (Vector3(m4, m5, m6) * v.y) + (Vector3(m7, m8, m9) * v.z);
+    }
+
+    Matrix3 operator * (Matrix3 m) const {  // Multiply
+        Matrix3 *ma2 = new Matrix3;
+        ma2->m1 = (m1 * m.m1) + (m4 * m.m2) + (m7 * m.m3);
+        ma2->m4 = (m1 * m.m4) + (m4 * m.m5) + (m7 * m.m6);
+        ma2->m7 = (m1 * m.m7) + (m4 * m.m8) + (m7 * m.m9);
+        ma2->m2 = (m2 * m.m1) + (m5 * m.m2) + (m8 * m.m3);
+        ma2->m5 = (m2 * m.m4) + (m5 * m.m5) + (m8 * m.m6);
+        ma2->m8 = (m2 * m.m7) + (m5 * m.m8) + (m8 * m.m9);
+        ma2->m3 = (m3 * m.m1) + (m6 * m.m2) + (m9 * m.m3);
+        ma2->m6 = (m3 * m.m4) + (m6 * m.m5) + (m9 * m.m6);
+        ma2->m9 = (m3 * m.m7) + (m6 * m.m8) + (m9 * m.m9);
+        return *ma2;
+    }
+
+    Matrix3 operator *= (Matrix3 m) { // Multiply Assignment
+        Matrix3 ma2;
+        ma2.m1 = (m1 * m.m1) + (m4 * m.m2) + (m7 * m.m3);
+        ma2.m4 = (m1 * m.m4) + (m4 * m.m5) + (m7 * m.m6);
+        ma2.m7 = (m1 * m.m7) + (m4 * m.m8) + (m7 * m.m9);
+        ma2.m2 = (m2 * m.m1) + (m5 * m.m2) + (m8 * m.m3);
+        ma2.m5 = (m2 * m.m4) + (m5 * m.m5) + (m8 * m.m6);
+        ma2.m8 = (m2 * m.m7) + (m5 * m.m8) + (m8 * m.m9);
+        ma2.m3 = (m3 * m.m1) + (m6 * m.m2) + (m9 * m.m3);
+        ma2.m6 = (m3 * m.m4) + (m6 * m.m5) + (m9 * m.m6);
+        ma2.m9 = (m3 * m.m7) + (m6 * m.m8) + (m9 * m.m9);
+        *this = ma2;
+        return *this;
+    }
+
+    bool operator == (Matrix3 m) {
+        if (m1 == m.m1 && (m2 == m.m2) && (m3 == m.m3) && (m4 == m.m4) && (m5 == m.m5) && (m6 == m.m6) && (m7 == m.m7) && (m8 == m.m8) && (m9 == m.m9)) {
+            return true;
+        }
+        return false;
+    }
+
 };
 
 struct Matrix4 {
@@ -532,6 +586,7 @@ struct Color {
 
 void print(Vector3 v);
 void print(Vector4 v);
+void print(Matrix3 m);
 
 
 int main()
@@ -539,24 +594,37 @@ int main()
     //Vector4 a(1, 20, 3, 1);
     //Vector4 b(-7, -4, -5, 51);
 
-    //Vector3 c(1500, 1500, 0);
+    Vector3 c(1500, 1500, 0);
     //Vector3 d(1400, 1400, 0);
 
-    Color col(32, 64, 0, 255);
-    Color col2(32, 64, 0, 255);
+    /*Color col(32, 64, 0, 255);
+    Color col2(32, 64, 0, 255);*/
     
+    const Matrix3 ma1(1, 3, 1, 2, 2, 2, 3, 1, 3);
+    const Matrix3 ma2(4, 6, 4, 5, 5, 6, 6, 4, 5);
+
+    //Matrix3 ma3(-0.188076824f, 0.f, 0.982154310f,
+    //             0.f,          1.f, 0.f,
+    //            -0.982154310f, 0.f,-0.188076824f);
+    //Vector3 v3(13.5f, -48.23f, 862);
+
+    print(ma1 * ma2);
+    Matrix3 ma3(1, 3, 1, 2, 2, 2, 3, 1, 3);
+    ma3 *= ma2;
+    print(ma3);
+
 
     /*a += b;*/
 
 
-    std::cout << (col == col2) << '\n';
+    /*std::cout << (col == col2) << '\n';
     std::cout << (int)col.GetAlpha() << "\n";
     col.SetAlpha(128);
 
     std::cout << (int)col.GetRed() << '\n';
     std::cout << (int)col.GetGreen() << '\n';
     std::cout << (int)col.GetBlue() << '\n';
-    std::cout << (int)col.GetAlpha();
+    std::cout << (int)col.GetAlpha();*/
 
 
     /*std::cout << (c.Dot(d));
@@ -581,6 +649,12 @@ void print(Vector4 v) {
     std::cout << v.y << "\n";
     std::cout << v.z << "\n";
     std::cout << v.w << "\n";
+}
+
+void print(Matrix3 m) {
+    std::cout << "\n | " << m.m1 << " | " << m.m4 << " | " << m.m7 << " | "
+              << "\n | " << m.m2 << " | " << m.m5 << " | " << m.m8 << " | "
+              << "\n | " << m.m3 << " | " << m.m6 << " | " << m.m9 << " | " << '\n';
 }
 
 
