@@ -596,10 +596,10 @@ struct Matrix3 {
 
 };
 
-// m1  |  m5  | m9  | m13
-// m2  |  m6  | m10 | m14
-// m3  |  m7  | m11 | m15
-// m4  |  m8  | m12 | m16
+// m1  |  m2  | m3  | m4
+// m5  |  m6  | m7  | m8
+// m9  |  m10 | m11 | m12
+// m13 |  m14 | m15 | m16
 struct Matrix4 {
     float m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16;
 
@@ -636,7 +636,7 @@ struct Matrix4 {
         m15 = ma15; m16 = ma16;
     }
 
-    Matrix4 operator = (Matrix4 m) {
+    Matrix4 operator = (Matrix4 m) { // Assignment
         m1 = m.m1; m2 = m.m2;
         m3 = m.m3; m4 = m.m4;
         m5 = m.m5; m6 = m.m6;
@@ -648,7 +648,7 @@ struct Matrix4 {
         return *this;
     }
 
-    Vector4 operator * (Vector4 v) {
+    Vector4 operator * (Vector4 v) { // Multiplication with Vectors
         return Vector4((v.x * m1) + (v.y * m5) + (v.z * m9)  + (v.w * m13),
                        (v.x * m2) + (v.y * m6) + (v.z * m10) + (v.w * m14),
                        (v.x * m3) + (v.y * m7) + (v.z * m11) + (v.w * m15),
@@ -656,17 +656,9 @@ struct Matrix4 {
             );
     }
 
-                                // m1  |  m5  | m9  | m13
-                                // m2  |  m6  | m10 | m14
-                                // m3  |  m7  | m11 | m15
-                                // m4  |  m8  | m12 | m16
-    // m1  |  m5  | m9  | m13   
-    // m2  |  m6  | m10 | m14
-    // m3  |  m7  | m11 | m15
-    // m4  |  m8  | m12 | m16
 
 
-    Matrix4 operator * (Matrix4 m) {
+    Matrix4 operator * (Matrix4 m) { // Multiplication
         Matrix4* ma2 = new Matrix4;
         // Row 1
         ma2->m1 = (m1 * m.m1) + (m5 * m.m2)   + (m9 * m.m3)  + (m13 * m.m4);
@@ -692,7 +684,7 @@ struct Matrix4 {
         return *ma2;
     }
 
-    Matrix4 operator *= (Matrix4 m) {
+    Matrix4 operator *= (Matrix4 m) { // Multiplication Assignment
         Matrix4* ma2 = new Matrix4;
         // Row 1
         ma2->m1 = (m1 * m.m1) + (m5 * m.m2)   + (m9 * m.m3)  + (m13 * m.m4);
@@ -717,6 +709,87 @@ struct Matrix4 {
         
         *this = *ma2;
         return *ma2;
+    }
+
+    bool operator == (Matrix4 m) { // Equality
+        if ((m1 == m.m1) && (m2 == m.m2) && (m3 == m.m3) && (m4 == m.m4)) {
+            if ((m5 == m.m5) && (m6 == m.m6) && (m7 == m.m7) && (m8 == m.m8)) {
+                if ((m9 == m.m9) && (m10 == m.m10) && (m11 == m.m11) && (m12 == m.m12)) {
+                    if ((m13 == m.m13) && (m14 == m.m14) && (m15 == m.m15) && (m16 == m.m16)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    bool operator != (Matrix4 m) { // Equality
+        if ((m1 == m.m1) && (m2 == m.m2) && (m3 == m.m3) && (m4 == m.m4)) {
+            if ((m5 == m.m5) && (m6 == m.m6) && (m7 == m.m7) && (m8 == m.m8)) {
+                if ((m9 == m.m9) && (m10 == m.m10) && (m11 == m.m11) && (m12 == m.m12)) {
+                    if ((m13 == m.m13) && (m14 == m.m14) && (m15 == m.m15) && (m16 == m.m16)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    const float& operator [] (int i) const { // Index
+        if (i == 0) { return m1; }
+        else if (i == 1)  { return m2;  }
+        else if (i == 2)  { return m3;  }
+        else if (i == 3)  { return m4;  }
+        else if (i == 4)  { return m5;  }
+        else if (i == 5)  { return m6;  }
+        else if (i == 6)  { return m7;  }
+        else if (i == 7)  { return m8;  }
+        else if (i == 8)  { return m9;  }
+        else if (i == 9)  { return m10; }
+        else if (i == 10) { return m11; }
+        else if (i == 11) { return m12; }
+        else if (i == 12) { return m13; }
+        else if (i == 13) { return m14; }
+        else if (i == 14) { return m15; }
+        else if (i == 15) { return m16; }
+    }
+
+
+    static Matrix4 MakeRotateX(float f) {
+        return Matrix4(1, 0, 0, 0, 0, cosf(f), -sinf(f), 0, 0, sinf(f), cosf(f), 0, 0, 0, 0, 1);
+    }
+    
+
+    static Matrix4 MakeRotateY(float f) { 
+        return Matrix4(cosf(f), 0, sinf(f), 0, 0, 1, 0, 0, -sinf(f), 0, cosf(f), 0, 0, 0, 0, 1);
+    }
+
+    static Matrix4 MakeRotateZ(float f) { 
+        return Matrix4(cosf(f),  sinf(f), 0, 0,
+                       -sinf(f), cosf(f), 0, 0,
+                       0,        0,       1, 0, 
+                       0,        0,       0, 1);
+    }
+
+    static Matrix4 MakeScale(float x, float y, float z) {
+        return Matrix4(x, 0, 0, 0,
+                       0, y, 0, 0,
+                       0, 0, z, 0,
+                       0, 0, 0, 1);
+    }
+
+    Vector4 GetForward() {
+        return Vector4(m9, m10, m11, m12);
+    }
+
+    Vector4 GetRight() {
+        return Vector4(m1, m2, m3, m4);
+    }
+
+    Vector4 GetUp() {
+        return Vector4(m5, m6, m7, m8);
     }
 
 };
@@ -858,7 +931,11 @@ int main()
                2, -12, -7, 3);
 
     m4 *= m5;
-    print(m4);
+    // print(m4);
+
+    print(Matrix4::MakeRotateX(3.98f).GetForward());
+    print(Matrix4::MakeRotateY(1.76f).GetRight());
+    print(Matrix4::MakeRotateZ(9.62f).GetUp());
 
 }
 
@@ -882,8 +959,8 @@ void print(Matrix3 m) {
 }
 
 void print(Matrix4 m) {
-    std::cout << "\n | " << m.m1 << " | " << m.m5 << " | " << m.m9  << " | " << m.m13 << " | "
-              << "\n | " << m.m2 << " | " << m.m6 << " | " << m.m10 << " | " << m.m14 << " | "
-              << "\n | " << m.m3 << " | " << m.m7 << " | " << m.m11 << " | " << m.m15 << " | "
-              << "\n | " << m.m4 << " | " << m.m8 << " | " << m.m12 << " | " << m.m16 << " | " << '\n';
+    std::cout << "\n | " << m.m1 << " | " << m.m2 << " | " << m.m3  << " | " << m.m4 << " | "
+              << "\n | " << m.m5 << " | " << m.m6 << " | " << m.m7 << " | " << m.m8 << " | "
+              << "\n | " << m.m9 << " | " << m.m10 << " | " << m.m11 << " | " << m.m12 << " | "
+              << "\n | " << m.m13 << " | " << m.m14 << " | " << m.m15 << " | " << m.m16 << " | " << '\n';
 }
