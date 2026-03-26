@@ -4,6 +4,13 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+
+
+/// <summary>
+/// This document is the testing document I used for all of the struct functions and operators
+/// It has a bunch of commented code from when I was testing stuff, but all of the structs should be fine.
+/// </summary>
+
 struct Vector3 {
     float x, y, z;
 
@@ -214,6 +221,11 @@ struct Vector3 {
 
     float Angle2D() {
         return atan2(y, x) * (180 / M_PI); // Multiplies arctan by 180/PI to convert it into degrees
+    }
+
+    Vector3 CalculateTriangleNormal(const Vector3& A, const Vector3& B, const Vector3& C) {
+        Vector3 D = (B - A).Cross(C - A);
+        return D.Normalised();
     }
 
 };
