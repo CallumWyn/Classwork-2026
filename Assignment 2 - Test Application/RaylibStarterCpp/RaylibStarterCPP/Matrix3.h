@@ -54,8 +54,8 @@ struct Matrix3 {
         return *this;
     }
 
-    Vector3 operator * (Vector3 v) const {        // Multiply by Vector
-        return (Vector3(m1, m2, m3) * v.x) + (Vector3(m4, m5, m6) * v.y) + (Vector3(m7, m8, m9) * v.z);
+    MathLibrary::Vector3 operator * (MathLibrary::Vector3 v) const {        // Multiply by Vector
+        return (MathLibrary::Vector3(m1, m2, m3) * v.x) + (MathLibrary::Vector3(m4, m5, m6) * v.y) + (MathLibrary::Vector3(m7, m8, m9) * v.z);
     }
 
     const Matrix3 operator * (Matrix3 m) const {  // Multiply
@@ -149,16 +149,16 @@ struct Matrix3 {
         return *matrix;
     }
 
-    Vector3 GetRight() {
-        return Vector3(m4, m5, m6);
+    MathLibrary::Vector3 GetRight() {
+        return MathLibrary::Vector3(m4, m5, m6);
     }
 
-    Vector3 GetForward() {
-        return Vector3(m1, m2, m3);
+    MathLibrary::Vector3 GetForward() {
+        return MathLibrary::Vector3(m1, m2, m3);
     }
 
-    Vector3 GetTranslate() {
-        return Vector3(m7, m8, m9);
+    MathLibrary::Vector3 GetTranslate() {
+        return MathLibrary::Vector3(m7, m8, m9);
     }
 
     bool IsApproximatelyEqual(Matrix3 m) const {

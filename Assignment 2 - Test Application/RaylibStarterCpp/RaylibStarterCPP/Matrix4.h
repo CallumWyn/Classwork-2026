@@ -50,8 +50,8 @@ struct Matrix4 {
         return *this;
     }
 
-    Vector4 operator * (Vector4 v) { // Multiplication with Vectors
-        return Vector4((v.x * m1) + (v.y * m5) + (v.z * m9) + (v.w * m13),
+    MathLibrary::Vector4 operator * (MathLibrary::Vector4 v) { // Multiplication with Vectors
+        return MathLibrary::Vector4((v.x * m1) + (v.y * m5) + (v.z * m9) + (v.w * m13),
             (v.x * m2) + (v.y * m6) + (v.z * m10) + (v.w * m14),
             (v.x * m3) + (v.y * m7) + (v.z * m11) + (v.w * m15),
             (v.x * m4) + (v.y * m8) + (v.z * m12) + (v.w * m16)
@@ -201,20 +201,20 @@ struct Matrix4 {
             0, 0, 0, 1);
     }
 
-    Vector4 GetForward() {
-        return Vector4(m9, m10, m11, m12);
+    MathLibrary::Vector4 GetForward() {
+        return MathLibrary::Vector4(m9, m10, m11, m12);
     }
 
-    Vector4 GetRight() {
-        return Vector4(m1, m2, m3, m4);
+    MathLibrary::Vector4 GetRight() {
+        return MathLibrary::Vector4(m1, m2, m3, m4);
     }
 
-    Vector4 GetUp() {
-        return Vector4(m5, m6, m7, m8);
+    MathLibrary::Vector4 GetUp() {
+        return MathLibrary::Vector4(m5, m6, m7, m8);
     }
 
-    Vector4 GetPosition() {
-        return Vector4(m13, m14, m15, m16);
+    MathLibrary::Vector4 GetPosition() {
+        return MathLibrary::Vector4(m13, m14, m15, m16);
     }
 
     bool IsApproximatelyEqual(Matrix4 m) const {

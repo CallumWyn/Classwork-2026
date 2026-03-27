@@ -18,7 +18,6 @@
 *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-
 #pragma warning( push , 0)
 #include <raylib.h>
 
@@ -26,10 +25,21 @@
 #define RAYGUI_SUPPORT_ICONS
 #include <raygui.h>
 
+#include "SceneObject.h"
+
+
 #pragma warning(pop)
 
 int main(int argc, char* argv[])
 {
+
+    SceneObject* SO = new SceneObject;
+    SceneObject* SO2 = new SceneObject;
+
+    SO->addChild(SO2);
+    SO->removeChild(SO2);
+
+
     // Initialization
     //--------------------------------------------------------------------------------------
     int screenWidth = 800;
@@ -43,13 +53,6 @@ int main(int argc, char* argv[])
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
-
-        // Draw
-        //----------------------------------------------------------------------------------
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
@@ -57,7 +60,6 @@ int main(int argc, char* argv[])
         DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
 
         EndDrawing();
-        //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
