@@ -36,6 +36,8 @@ int main(int argc, char* argv[])
     SceneObject* SO = new SceneObject;
     SceneObject* SO2 = new SceneObject;
 
+    
+
     SO->addChild(SO2);
     SO->removeChild(SO2);
 
