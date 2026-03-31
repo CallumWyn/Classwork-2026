@@ -41,3 +41,22 @@ void SceneObject::draw() {
 		child->draw();
 	}
 }
+
+const Matrix3& SceneObject::getLocalTransform() const {
+	return m_localTransform;
+}
+const Matrix3& SceneObject::getGlobalTransform() const {
+	return m_globalTransform;
+}
+
+void SceneObject::updateTransform() {
+	// Checks if the object has a parent
+	if (m_parent != nullptr) { m_globalTransform = m_parent->m_globalTransform * m_localTransform; }
+	// If it doesn't, global transform is set to local
+	else { m_globalTransform = m_localTransform; }
+
+	// Goes through all of the children and does the same
+	for (SceneObject* child : m_children){
+		child->updateTransform();
+	}
+}

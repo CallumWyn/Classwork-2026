@@ -50,5 +50,16 @@ public:
 	// These functions basically just run the overridden onUpdate and onDraw functions for all of the children in the vector
 	void update(float deltaTime);
 	void draw();
+
+	// These functions are just getters for the different transforms
+	const Matrix3& getLocalTransform() const;
+	const Matrix3& getGlobalTransform() const;
+
+	// This function changes the global transform based on the local transform. 
+	// If the object has a parent, it changes with local * global, if not, it's just global = local
+	// It then goes through all the children in the array and does the same
+	void updateTransform();
+
+	// These functions are just using already existing functions in matrix, but adds the updateTransform function to them.
 };
 

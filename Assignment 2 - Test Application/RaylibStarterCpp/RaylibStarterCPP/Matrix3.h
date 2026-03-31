@@ -161,6 +161,28 @@ struct Matrix3 {
         return MathLibrary::Vector3(m7, m8, m9);
     }
 
+    // Need to make new functions to set Position, Rotation and Scale. Don't need a function for rotateZ, as the current rotate already does that.
+    // Need to make these functions in SceneObject, but need to make new ones in matrix3
+    // Set Rotate makes the matrix into a rotation matrix, while just rotate multiplies the current matrix by a rotation matrix
+
+    // This function just rotates the already existing matrix instead of making a new one
+    void rotate(float radians) {
+        Matrix3 matrix = Matrix3::MakeRotate(radians);
+        *this *= matrix;
+    }
+
+    // This function just moves the already existing matrix instead of making a new one
+    void translate(float x, float y) {
+        Matrix3 matrix = Matrix3::MakeTranslate(x, y);
+        *this *= matrix;
+    }
+
+    // This function just scales the already existing matrix instead of making a new one
+    void scale(float x, float y) {
+        Matrix3 matrix = Matrix3::MakeScale(x, y);
+        *this *= matrix;
+    }
+
     bool IsApproximatelyEqual(Matrix3 m) const {
         if ((m.m1 > (m1 - 1e-4)) && (m.m1 < (m1 + 1e-4)) && (m.m2 > (m2 - 1e-4)) && (m.m2 < (m2 + 1e-4)) && (m.m3 > (m3 - 1e-4)) && (m.m3 < (m3 + 1e-4))) {
             if ((m.m4 > (m4 - 1e-4)) && (m.m4 < (m4 + 1e-4)) && (m.m5 > (m5 - 1e-4)) && (m.m5 < (m5 + 1e-4)) && (m.m6 > (m6 - 1e-4)) && (m.m6 < (m6 + 1e-4))) {
