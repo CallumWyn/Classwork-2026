@@ -26,6 +26,7 @@
 #include <raygui.h>
 
 #include "SceneObject.h"
+#include "Game.h"
 
 
 #pragma warning(pop)
@@ -35,6 +36,8 @@ int main(int argc, char* argv[])
 
     SceneObject* SO = new SceneObject;
     SceneObject* SO2 = new SceneObject;
+
+    Game game;
 
     
 
