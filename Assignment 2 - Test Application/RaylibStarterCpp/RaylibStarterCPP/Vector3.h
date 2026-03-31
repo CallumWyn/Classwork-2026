@@ -187,8 +187,6 @@ namespace MathLibrary {
         }
 
         bool IsApproximatelyEqual(Vector3 v) const {
-
-
             if (//   Checks if v.x is between x +- 1e-4            Checks if v.y is between y +- 1e-4            Checks if v.z is between z +- 1e-4
                 ((x - 1e-4) <= v.x) && ((x + 1e-4) >= v.x) && ((y - 1e-4) <= v.y) && ((y + 1e-4) >= v.y) && ((z - 1e-4) <= v.z) && ((z + 1e-4) >= v.z)) {
                 return true;

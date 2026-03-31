@@ -60,3 +60,28 @@ void SceneObject::updateTransform() {
 		child->updateTransform();
 	}
 }
+
+void SceneObject::setPosition(float x, float y) {
+	m_localTransform = Matrix3::MakeTranslate(x, y);
+}
+void SceneObject::setRotation(float radians) {
+	m_localTransform = Matrix3::MakeRotate(radians);
+}
+void SceneObject::setScale(float x, float y) {
+	m_localTransform = Matrix3::MakeScale(x, y);
+}
+
+void SceneObject::translate(float x, float y) {
+	m_localTransform.translate(x, y);
+	updateTransform();
+}
+
+void SceneObject::rotate(float radians) {
+	m_localTransform.rotate(radians);
+	updateTransform();
+}
+
+void SceneObject::scale(float x, float y) {
+	m_localTransform.scale(x, y);
+	updateTransform();
+}
