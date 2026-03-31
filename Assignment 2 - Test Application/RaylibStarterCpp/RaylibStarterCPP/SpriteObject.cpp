@@ -1,5 +1,5 @@
 #include "SpriteObject.h"
 
-void SpriteObject::load(const char* filename) {
-	image = LoadImage()
+bool SpriteObject::load(std::string filename) {
+	// image = LoadImage(filename.c_str());
 }

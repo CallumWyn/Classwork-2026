@@ -9,9 +9,7 @@ public:
 	SpriteObject() {}
 	SpriteObject(std::string filename){}
 
-	bool load(std::string filename) {
-		
-	}
+	bool load(std::string filename);
 
 protected:
 	Texture2D m_texture = Texture2D();
