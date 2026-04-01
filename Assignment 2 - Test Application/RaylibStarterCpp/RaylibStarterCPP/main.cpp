@@ -34,15 +34,10 @@
 int main(int argc, char* argv[])
 {
 
-    SceneObject* SO = new SceneObject;
-    SceneObject* SO2 = new SceneObject;
 
-    Game game;
 
-    
+    Game *game = new Game();
 
-    SO->addChild(SO2);
-    SO->removeChild(SO2);
 
 
     // Initialization
@@ -52,19 +47,22 @@ int main(int argc, char* argv[])
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
+    game->Init();
+
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        game->Update();
+        ClearBackground(RAYWHITE);
+        
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
-
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
-         
+        //DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        
+        game->Draw();
 
         EndDrawing();
     }

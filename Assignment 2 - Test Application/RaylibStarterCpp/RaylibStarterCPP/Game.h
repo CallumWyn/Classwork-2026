@@ -31,7 +31,7 @@ public:
 	void Shutdown();
 	// Update runs every bit of the game, detecting when the player clicks a key, and what function to run when that happens
 	void Update();
-	// Begins and ends the drawing done with raylib
+	// Basically just runs the onDraw function in spriteObject for all sprites
 	void Draw();
 
 protected:

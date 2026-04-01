@@ -35,8 +35,8 @@ protected:
 	SceneObject* m_parent = nullptr;
 	std::vector<SceneObject*> m_children;
 
-	Matrix3 m_localTransform;
-	Matrix3 m_globalTransform;
+	Matrix3 m_localTransform = Matrix3(1, 0, 0, 0, 1, 0, 1, 1, 1);
+	Matrix3 m_globalTransform = Matrix3(1,0,0,0,1,0,1,1,1);
 
 public:
 	// Just a way to add and remove things in the m_children vector and the m_parent variable
