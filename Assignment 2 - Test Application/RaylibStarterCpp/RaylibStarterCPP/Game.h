@@ -10,14 +10,19 @@ class Game{
 public:
 
 	Game(){}
-	//Game(int screenWidth, int screenHeight) {
+	Game(int screenWidth, int screenHeight) {
 
-	//}
+	}
 	~Game() {
 		delete tank;
 		delete turret;
 		delete tankSprite;
 		delete turretSprite;
+
+		tank = nullptr;
+		turret = nullptr;
+		tankSprite = nullptr;
+		turretSprite = nullptr;
 	}
 
 	
@@ -41,7 +46,8 @@ protected:
 	SpriteObject* tankSprite = new SpriteObject();
 	SpriteObject* turretSprite = new SpriteObject();
 
-	std::string that = "wtf";
+	int s_Width = 800;
+	int s_Height = 450;
 };
 
 
