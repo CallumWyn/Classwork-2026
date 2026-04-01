@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector3.h"
+#include <iostream>
 
 struct Matrix3 {
     float m1, m2, m3, m4, m5, m6, m7, m8, m9;
@@ -75,13 +76,13 @@ struct Matrix3 {
     Matrix3 operator *= (Matrix3 m) {       // Multiply Assignment
         Matrix3 ma2;
         ma2.m1 = (m1 * m.m1) + (m4 * m.m2) + (m7 * m.m3);
-        ma2.m4 = (m1 * m.m4) + (m4 * m.m5) + (m7 * m.m6);
-        ma2.m7 = (m1 * m.m7) + (m4 * m.m8) + (m7 * m.m9);
         ma2.m2 = (m2 * m.m1) + (m5 * m.m2) + (m8 * m.m3);
-        ma2.m5 = (m2 * m.m4) + (m5 * m.m5) + (m8 * m.m6);
-        ma2.m8 = (m2 * m.m7) + (m5 * m.m8) + (m8 * m.m9);
         ma2.m3 = (m3 * m.m1) + (m6 * m.m2) + (m9 * m.m3);
+        ma2.m4 = (m1 * m.m4) + (m4 * m.m5) + (m7 * m.m6);
+        ma2.m5 = (m2 * m.m4) + (m5 * m.m5) + (m8 * m.m6);
         ma2.m6 = (m3 * m.m4) + (m6 * m.m5) + (m9 * m.m6);
+        ma2.m7 = (m1 * m.m7) + (m4 * m.m8) + (m7 * m.m9);
+        ma2.m8 = (m2 * m.m7) + (m5 * m.m8) + (m8 * m.m9);
         ma2.m9 = (m3 * m.m7) + (m6 * m.m8) + (m9 * m.m9);
         *this = ma2;
         return *this;
@@ -127,8 +128,8 @@ struct Matrix3 {
 
     static Matrix3 MakeRotate(float f) {
         Matrix3* matrix = new Matrix3;
-        matrix->m1 = cos(f); matrix->m4 = -sin(f); matrix->m7 = 0;
-        matrix->m2 = sin(f); matrix->m5 = cos(f); matrix->m8 = 0;
+        matrix->m1 = cosf(f); matrix->m4 = -sinf(f); matrix->m7 = 0;
+        matrix->m2 = sinf(f); matrix->m5 = cosf(f); matrix->m8 = 0;
         matrix->m3 = 0;       matrix->m6 = 0;      matrix->m9 = 1;
         return *matrix;
     }
@@ -144,7 +145,7 @@ struct Matrix3 {
     static Matrix3 MakeTranslate(float x, float y) {
         Matrix3* matrix = new Matrix3;
         matrix->m1 = 1;     matrix->m4 = 0;   matrix->m7 = x;
-        matrix->m2 = 0;     matrix->m5 = 0;   matrix->m8 = y;
+        matrix->m2 = 0;     matrix->m5 = 1;   matrix->m8 = y;
         matrix->m3 = 0;     matrix->m6 = 0;   matrix->m9 = 1;
         return *matrix;
     }
@@ -173,8 +174,10 @@ struct Matrix3 {
 
     // This function just moves the already existing matrix instead of making a new one
     void translate(float x, float y) {
-        Matrix3 matrix = Matrix3::MakeTranslate(x, y);
-        *this *= matrix;
+        //Matrix3 matrix = Matrix3::MakeTranslate(x, y);
+        //*this *= matrix;
+        m7 += x;
+        m8 += y;
     }
 
     // This function just scales the already existing matrix instead of making a new one
@@ -194,4 +197,9 @@ struct Matrix3 {
         return false;
     }
 
+    static void print(Matrix3 m) {
+        std::cout << "\n | " << m.m1 << " | " << m.m2 << " | " << m.m3 << " | "
+            << "\n | " << m.m4 << " | " << m.m5 << " | " << m.m6 << " | "
+            << "\n | " << m.m7 << " | " << m.m8 << " | " << m.m9 << " | " << '\n';
+    }
 };

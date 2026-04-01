@@ -61,6 +61,8 @@ void SceneObject::updateTransform() {
 	}
 }
 
+
+// These are all bugged (I think idk)
 void SceneObject::setPosition(float x, float y) {
 	m_localTransform = Matrix3::MakeTranslate(x, y);
 	updateTransform();
