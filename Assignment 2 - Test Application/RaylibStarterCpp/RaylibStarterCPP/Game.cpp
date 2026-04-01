@@ -10,11 +10,11 @@ void Game::Init() {
 
 	// Both of these try to put the sprites in the right positions so the rotation doesn't mess up, but it doesn't do it perfectly, and if the screen gets any bigger, it will not work
 	// Puts the turret in approximately the right position
-	turretSprite->rotate(-90 * (float)(PI / 180.0f));
-	turretSprite->setPosition(-turretSprite->getHeight() / 2, turretSprite->getWidth() - 72.5f);
+	turretSprite->rotate(-90 * (float)(PI / 180.f));
+	turretSprite->setPosition(-turretSprite->getHeight() / 2.f, turretSprite->getWidth() - 72.5f);
 	// Puts the tank in approximately the right position
-	tankSprite->rotate(-90 * (float)(PI / 180.0f));
-	tankSprite->setPosition(-(tankSprite->getWidth() / 2.0f), tankSprite->getHeight() / 2.0f - 80);
+	tankSprite->rotate(-90 * (float)(PI / 180.f));
+	tankSprite->setPosition(-(tankSprite->getWidth() / 2.f), tankSprite->getHeight() / 2.f - 80);
 
 	// Makes the sprites children of the objects
 	tank->addChild(tankSprite);
@@ -23,7 +23,7 @@ void Game::Init() {
 	tank->addChild(turret);
 
 	// Sets the actual tank object position
-	tank->setPosition(s_Width / 2.0f, s_Height / 2.0f);
+	tank->setPosition(s_Width / 2.f, s_Height / 2.f);
 
 }
 
