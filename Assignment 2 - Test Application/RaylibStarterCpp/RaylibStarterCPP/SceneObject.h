@@ -54,6 +54,7 @@ public:
 	// These functions are just getters for the different transforms
 	const Matrix3& getLocalTransform() const;
 	const Matrix3& getGlobalTransform() const;
+	void setLocalTransform(Matrix3 matrix);
 
 	// This function changes the global transform based on the local transform. 
 	// If the object has a parent, it changes with local * global, if not, it's just global = local

@@ -16,13 +16,17 @@ public:
 	~Game() {
 		delete tank;
 		delete turret;
+		delete bullet;
 		delete tankSprite;
 		delete turretSprite;
+		delete bulletSprite;
 
 		tank = nullptr;
 		turret = nullptr;
+		bullet = nullptr;
 		tankSprite = nullptr;
 		turretSprite = nullptr;
+		bulletSprite = nullptr;
 	}
 
 	
@@ -42,9 +46,13 @@ public:
 protected:
 	SceneObject* tank = new SceneObject();
 	SceneObject* turret = new SceneObject();
+	SceneObject* bullet = new SceneObject();
 
 	SpriteObject* tankSprite = new SpriteObject();
 	SpriteObject* turretSprite = new SpriteObject();
+	SpriteObject* bulletSprite = new SpriteObject();
+
+	bool bulletOn = false;
 
 	int s_Width = 800;
 	int s_Height = 450;

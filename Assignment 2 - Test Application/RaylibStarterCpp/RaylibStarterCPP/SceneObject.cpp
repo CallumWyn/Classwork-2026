@@ -49,6 +49,10 @@ const Matrix3& SceneObject::getGlobalTransform() const {
 	return m_globalTransform;
 }
 
+void SceneObject::setLocalTransform(Matrix3 matrix) {
+	m_localTransform = matrix;
+}
+
 void SceneObject::updateTransform() {
 	// Checks if the object has a parent
 	if (m_parent != nullptr) { m_globalTransform = m_parent->m_globalTransform * m_localTransform; }
