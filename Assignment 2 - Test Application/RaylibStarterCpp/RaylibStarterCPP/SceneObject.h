@@ -62,11 +62,11 @@ public:
 	void updateTransform();
 
 	// These functions are just using already existing functions in matrix, but adds the updateTransform function to them.
-	// These functions are kinda useless, as there is not really much point in resetting the matrices
+	// These functions are mostly used when first creating matrices, or to reset them
 	void setPosition(float x, float y);
 	void setRotation(float radians);
 	void setScale(float x, float y);
-	// These functions are ones we'll use
+	// These functions are ones we'll use to change existing matrices
 	void translate(float x, float y);
 	void rotate(float radians);
 	void scale(float x, float y);

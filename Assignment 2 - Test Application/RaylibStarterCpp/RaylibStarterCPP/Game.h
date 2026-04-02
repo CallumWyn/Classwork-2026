@@ -10,9 +10,13 @@ class Game{
 
 public:
 
-	Game(){}
+	Game(){
+		s_Width = 800;
+		s_Height = 450;
+	}
 	Game(int screenWidth, int screenHeight) {
-
+		s_Width = screenWidth;
+		s_Height = screenHeight;
 	}
 	~Game() {
 		delete tank;
@@ -54,13 +58,14 @@ protected:
 	SpriteObject* turretSprite = new SpriteObject();
 	SpriteObject* bulletSprite = new SpriteObject();
 
-	Wall* wall1 = new Wall(0, 0, 100, 750);
-	std::vector<Wall*> walls = { wall1 };
+	Wall* wall1 = new Wall(100, 100, 200, 350);
+	Wall* wall2 = new Wall(600, 100, 700, 350);
+	std::vector<Wall*> walls = { wall1, wall2 };
 
 	bool bulletOn = false;
 
-	int s_Width = 800;
-	int s_Height = 450;
+	int s_Width;
+	int s_Height;
 };
 
 

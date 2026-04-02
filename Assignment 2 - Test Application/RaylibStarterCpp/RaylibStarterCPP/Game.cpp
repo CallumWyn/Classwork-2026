@@ -2,7 +2,7 @@
 
 void Game::Init() {
 	
-	Matrix3::print(tank->getGlobalTransform());
+	//Matrix3::print(tank->getGlobalTransform());
 
 	// Loads the sprites so that they are stored in the sprite variables
 	tankSprite->Load("../Tank_images/tankBody_blue_outline.png");
@@ -17,7 +17,7 @@ void Game::Init() {
 	tankSprite->rotate(-90 * (float)(PI / 180.f));
 	tankSprite->setPosition(-(tankSprite->getWidth() / 2.f), tankSprite->getHeight() / 2.f - 80);
 
-	Matrix3::print(turret->getGlobalTransform());
+	//Matrix3::print(turret->getGlobalTransform());
 
 	// Makes the sprites children of the objects
 	tank->addChild(tankSprite);
@@ -38,47 +38,46 @@ void Game::Update() {
 	if (IsKeyDown(KEY_W)) { 
 		// Moves the tank object and all of it's children
 		tank->translate(tank->getGlobalTransform().m1, tank->getGlobalTransform().m2);
-		// Gives debug info about the tank and turret's matrices
-		std::cout << "\nTank Matrix: \n";
-		Matrix3::print(tank->getLocalTransform());
-		std::cout << "\nTurret Matrix: \n";
-		Matrix3::print(turret->getGlobalTransform());
+		//// Gives debug info about the tank and turret's matrices
+		//std::cout << "\nTank Matrix: \n";
+		//Matrix3::print(tank->getLocalTransform());
+		//std::cout << "\nTurret Matrix: \n";
+		//Matrix3::print(turret->getGlobalTransform());
 	}
 	if (IsKeyDown(KEY_S)) { 
 		tank->translate(-(tank->getGlobalTransform().m1), -(tank->getGlobalTransform().m2));
-		std::cout << "\nTank Matrix: \n";
-		Matrix3::print(tank->getLocalTransform());
-		std::cout << "\nTurret Matrix: \n";
-		Matrix3::print(turret->getGlobalTransform());
+		//std::cout << "\nTank Matrix: \n";
+		//Matrix3::print(tank->getLocalTransform());
+		//std::cout << "\nTurret Matrix: \n";
+		//Matrix3::print(turret->getGlobalTransform());
 	}
 	if (IsKeyDown(KEY_D)) { 
-		Matrix3::print(tank->getGlobalTransform());
 		tank->rotate(0.01); 
-		std::cout << "\nTank Matrix: \n";
-		Matrix3::print(tank->getLocalTransform());
-		std::cout << "\nTurret Matrix: \n";
-		Matrix3::print(turret->getGlobalTransform());
+		//std::cout << "\nTank Matrix: \n";
+		//Matrix3::print(tank->getLocalTransform());
+		//std::cout << "\nTurret Matrix: \n";
+		//Matrix3::print(turret->getGlobalTransform());
 	}
 	if (IsKeyDown(KEY_A)) { 
 		tank->rotate(-0.01);
-		std::cout << "\nTank Matrix: \n";
-		Matrix3::print(tank->getLocalTransform());
-		std::cout << "\nTurret Matrix: \n";
-		Matrix3::print(turret->getGlobalTransform());
+		//std::cout << "\nTank Matrix: \n";
+		//Matrix3::print(tank->getLocalTransform());
+		//std::cout << "\nTurret Matrix: \n";
+		//Matrix3::print(turret->getGlobalTransform());
 	}
 	if (IsKeyDown(KEY_E)) { 
 		turret->rotate(0.01);
-		std::cout << "\nTank Matrix: \n";
-		Matrix3::print(tank->getLocalTransform());
-		std::cout << "\nTurret Matrix: \n";
-		Matrix3::print(turret->getGlobalTransform());
+		//std::cout << "\nTank Matrix: \n";
+		//Matrix3::print(tank->getLocalTransform());
+		//std::cout << "\nTurret Matrix: \n";
+		//Matrix3::print(turret->getGlobalTransform());
 	}
 	if (IsKeyDown(KEY_Q)) { 
 		turret->rotate(-0.01);
-		std::cout << "\nTank Matrix: \n";
-		Matrix3::print(tank->getLocalTransform());
-		std::cout << "\nTurret Matrix: \n";
-		Matrix3::print(turret->getGlobalTransform());
+		//std::cout << "\nTank Matrix: \n";
+		//Matrix3::print(tank->getLocalTransform());
+		//std::cout << "\nTurret Matrix: \n";
+		//Matrix3::print(turret->getGlobalTransform());
 	}
 
 	// Need to:
@@ -111,6 +110,7 @@ void Game::Update() {
 			// Draws the bullet onto the application
 			bullet->draw();
 
+			// Goes through all of the walls and checks if the bullet is within the bounds of it
 			for (Wall* wall : walls) {
 				if (bulletCollision(*wall, bullet->getGlobalTransform().m7, bullet->getGlobalTransform().m8)) {
 					bulletOn = false;

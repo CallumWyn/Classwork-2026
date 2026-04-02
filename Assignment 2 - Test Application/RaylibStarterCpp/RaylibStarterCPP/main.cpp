@@ -36,7 +36,6 @@ int main(int argc, char* argv[])
 
 
 
-    Game *game = new Game();
 
 
 
@@ -44,6 +43,7 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------
     int screenWidth = 800;
     int screenHeight = 450;
+    Game *game = new Game(screenWidth, screenHeight);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -55,13 +55,13 @@ int main(int argc, char* argv[])
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        // Runs the main game loop
         game->Update();
         ClearBackground(RAYWHITE);
         
         BeginDrawing();
-
-        //DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
         
+        // Draws the walls, turret and tank
         game->Draw();
 
         EndDrawing();
