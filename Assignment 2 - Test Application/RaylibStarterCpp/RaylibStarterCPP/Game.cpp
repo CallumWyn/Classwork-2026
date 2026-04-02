@@ -80,50 +80,70 @@ void Game::Update() {
 		std::cout << "\nTurret Matrix: \n";
 		Matrix3::print(turret->getGlobalTransform());
 	}
+
+	// Need to:
+	// 1. Make a variable for bullet sprite and object, and make bullet object the parent in init /
+	// 2. Draw bullet when space is pressed, and change it's local tranform to turrets global transform (Possibly adding some numbers like turret width and height) /
+	// 3. After space is pressed, flip a switch to make player unable to spawn another bullet, and it fufills an if condition to move bullets position based on it's angle /
+	// 4. When bullet position is a good amount passed the screen border, flip the switch back so bullet stops moving and can be reset /
+	// 5. First, before adding an actual wall, define a min and max x and y value
+	// 6. If the bullet's position ever overlaps with the defined area, stop drawing the bullet and flip the bullet switch
+	// 7. After this, figure out how to draw a square in raylib, and make it the wall
+
 	if (IsKeyDown(KEY_SPACE)) {
 		if (!bulletOn) {
 			bulletOn = true;
 			bullet->setLocalTransform(turret->getGlobalTransform());
-			bullet->translate((bulletSprite->getWidth() / 10), bulletSprite->getHeight());
-			/*std::cout << acosf(turret->getGlobalTransform().m1) * (PI / 180) << '\n';
-			bullet->setRotation(acosf(turret->getGlobalTransform().m1) * (PI / 180));
-			bullet->translate(turret->getGlobalTransform().m7, turret->getGlobalTransform().m8);*/
-			std::cout << "Bullet: \n";
-			Matrix3::print(bullet->getLocalTransform());
+			bullet->translate((bulletSprite->getWidth() / 2 - 15), bulletSprite->getHeight() - 17);
 			bullet->updateTransform();
-			Matrix3::print(bullet->getGlobalTransform());
-			std::cout << "Turret: \n";
-			Matrix3::print(turret->getGlobalTransform());
-
-			
+			//// Debug Info
+			//Matrix3::print(bullet->getGlobalTransform());
+			//std::cout << "Turret: \n";
+			//Matrix3::print(turret->getGlobalTransform());
 		}
 	}
 	// Checks if the bullet has been fired
 	if (bulletOn) {
 		// This if statement makes sure the bullet is still within the screen border
 		if ((bullet->getGlobalTransform().m7 > -5) && (bullet->getGlobalTransform().m7 < s_Width + 5) && (bullet->getGlobalTransform().m8 > -5) && (bullet->getGlobalTransform().m8 < s_Height + 5)) {
-			// This basically just consistantly moves the bullet
+			// This basically just consistantly moves the bullet. Multiplying both values by the same amount makes it go faster
 			bullet->translate(bullet->getGlobalTransform().m1 * 5, bullet->getGlobalTransform().m2 * 5);
+			// Draws the bullet onto the application
 			bullet->draw();
-			std::cout << "Bullet: \n";
-			Matrix3::print(bullet->getLocalTransform());
+
+			for (Wall* wall : walls) {
+				if (bulletCollision(*wall, bullet->getGlobalTransform().m7, bullet->getGlobalTransform().m8)) {
+					bulletOn = false;
+					break;
+				}
+			}
+			
+			//// Debug Stats
+			//std::cout << "Bullet: \n";
+			//Matrix3::print(bullet->getLocalTransform());
 		}
 		else {
+			// Stops moving the bullet when it reaches the edge of the screen
 			bulletOn = false;
 		}
 		
 	}
 
-	// Need to:
-	// 1. Make a variable for bullet sprite and object, and make bullet object the parent in init
-	// 2. Draw bullet when space is pressed, and change it's local tranform to turrets global transform (Possibly adding some numbers like turret width and height)
-	// 3. After space is pressed, flip a switch to make player unable to spawn another bullet, and it fufills an if condition to move bullets position based on it's angle
-	// 4. When bullet position is a good amount passed the screen border, flip the switch back so bullet stops moving and can be reset
-	// 5. Figure out collision
+	
 }
 
 void Game::Draw() {
 	tank->draw();
+	for (Wall* wall : walls) {
+		wall->draw();
+	}
+}
+
+bool Game::bulletCollision(const Wall wall, float x, float y) {
+	if ((wall.minX < x + bulletSprite->getWidth()) && (wall.maxX > x - bulletSprite->getWidth()) && (wall.minY < y + bulletSprite->getHeight()) && (wall.maxY > y - bulletSprite->getHeight())) {
+		return true;
+	}
+	return false;
 }
 
 

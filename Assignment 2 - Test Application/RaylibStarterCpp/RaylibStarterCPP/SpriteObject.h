@@ -3,7 +3,6 @@
 #include "raylib.h"
 #include "SceneObject.h"
 
-// Need to figure out wtf to do here lol
 class SpriteObject : public SceneObject{
 public:
 	SpriteObject() {}
