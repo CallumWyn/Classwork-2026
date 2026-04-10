@@ -421,3 +421,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Unreal Engine Unnecessary Files
+Intermediate/
+Saved/
+DerivedDataCache/
