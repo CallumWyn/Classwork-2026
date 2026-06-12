@@ -61,13 +61,13 @@ int main(int argc, char* argv[])
     }
 
 
-    Critter destroyer;
+    Critter* destroyer = new Critter();
     Vector2 velocity = { -100 + (rand() % 200), -100 + (rand() % 200) };
     velocity = Vector2Scale(Vector2Normalize(velocity), *MAX_VELOCITY);
-    destroyer.Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/9.png");
+    destroyer->Init(Vector2{ (float)(screenWidth >> 1), (float)(screenHeight >> 1) }, velocity, 20, "res/9.png");
 
-    float timer = 1;
-    Vector2 nextSpawnPos = destroyer.GetPosition();
+    float* timer = new float(1);
+    Vector2 nextSpawnPos = destroyer->GetPosition();
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -77,33 +77,33 @@ int main(int argc, char* argv[])
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
 
-        float delta = GetFrameTime();
+        float* delta = new float(GetFrameTime());
 
         // update the destroyer
-        destroyer.Update(delta);
+        destroyer->Update(*delta);
         // check each critter against screen bounds
-        if (destroyer.GetX() < 0) {
-            destroyer.SetX(0);
-            destroyer.SetVelocity(Vector2{ -destroyer.GetVelocity().x, destroyer.GetVelocity().y });
+        if (destroyer->GetX() < 0) {
+            destroyer->SetX(0);
+            destroyer->SetVelocity(Vector2{ -destroyer->GetVelocity().x, destroyer->GetVelocity().y });
         }
-        if (destroyer.GetX() > screenWidth) {
-            destroyer.SetX(screenWidth);
-            destroyer.SetVelocity(Vector2{ -destroyer.GetVelocity().x, destroyer.GetVelocity().y });
+        if (destroyer->GetX() > screenWidth) {
+            destroyer->SetX(screenWidth);
+            destroyer->SetVelocity(Vector2{ -destroyer->GetVelocity().x, destroyer->GetVelocity().y });
         }
-        if (destroyer.GetY() < 0) {
-            destroyer.SetY(0);
-            destroyer.SetVelocity(Vector2{ destroyer.GetVelocity().x, -destroyer.GetVelocity().y });
+        if (destroyer->GetY() < 0) {
+            destroyer->SetY(0);
+            destroyer->SetVelocity(Vector2{ destroyer->GetVelocity().x, -destroyer->GetVelocity().y });
         }
-        if (destroyer.GetY() > screenHeight) {
-            destroyer.SetY(screenHeight);
-            destroyer.SetVelocity(Vector2{ destroyer.GetVelocity().x, -destroyer.GetVelocity().y });
+        if (destroyer->GetY() > screenHeight) {
+            destroyer->SetY(screenHeight);
+            destroyer->SetVelocity(Vector2{ destroyer->GetVelocity().x, -destroyer->GetVelocity().y });
         }
 
         // update the critters
         // (dirty flags will be cleared during update)
         for (int i = 0; i < *CRITTER_COUNT; i++)
         {
-            critters[i].Update(delta);
+            critters[i].Update(*delta);
 
             // check each critter against screen bounds
             if (critters[i].GetX() < 0) {
@@ -125,8 +125,8 @@ int main(int argc, char* argv[])
 
             // kill any critter touching the destroyer
             // simple circle-to-circle collision check
-            float dist = Vector2Distance(critters[i].GetPosition(), destroyer.GetPosition());
-            if (dist < critters[i].GetRadius() + destroyer.GetRadius())
+            float dist = Vector2Distance(critters[i].GetPosition(), destroyer->GetPosition());
+            if (dist < critters[i].GetRadius() + destroyer->GetRadius())
             {
                 critters[i].Destroy();
                 // this would be the perfect time to put the critter into an object pool
@@ -163,27 +163,27 @@ int main(int argc, char* argv[])
             }
         }
 
-        timer -= delta;
-        if (timer <= 0)
+        *timer -= *delta;
+        if (*timer <= 0)
         {
-            timer = 1;
+            *timer = 1;
 
             // find any dead critters and spit them out (respawn)
             for (int i = 0; i < *CRITTER_COUNT; i++)
             {
                 if (critters[i].IsDead())
                 {
-                    Vector2 normal = Vector2Normalize(destroyer.GetVelocity());
+                    Vector2 normal = Vector2Normalize(destroyer->GetVelocity());
 
                     // get a position behind the destroyer, and far enough away that the critter won't bump into it again
-                    Vector2 pos = destroyer.GetPosition();
+                    Vector2 pos = destroyer->GetPosition();
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
                     critters[i].Init(pos, Vector2Scale(normal, -*MAX_VELOCITY), 12, "res/10.png");
                     break;
                 }
             }
-            nextSpawnPos = destroyer.GetPosition();
+            nextSpawnPos = destroyer->GetPosition();
         }
 
         // Draw
@@ -200,7 +200,7 @@ int main(int argc, char* argv[])
         // draw the destroyer
         // (if you're wondering why it looks a little odd when sometimes critters are destroyed when they're not quite touching the 
         // destroyer, it's because the origin is at the top-left. ...you could fix that!)
-        destroyer.Draw();
+        destroyer->Draw();
 
         DrawFPS(10, 10);
         //DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
