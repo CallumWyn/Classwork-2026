@@ -29,6 +29,8 @@ public:
 	void SetX(float x) { m_position.x = x; }
 	void SetY(float y) { m_position.y = y; }
 
+	void SetLoadStatus(bool status);
+
 	Vector2 GetPosition() { return m_position; }
 	void SetPosition(Vector2 position) { m_position = position; }
 

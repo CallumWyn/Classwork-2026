@@ -39,12 +39,22 @@ int main(int argc, char* argv[])
 
     srand(time(NULL));
 
-
+    // Change into a vector pointer and use vector iterator
     Critter critters[50]; 
+
+
 
     // create some critters
     const int* CRITTER_COUNT = new int(50);
     const int* MAX_VELOCITY = new int(80);
+
+    std::vector<Critter*> critters2(*CRITTER_COUNT);
+    std::vector<Critter*>::iterator crittersIT;
+
+    for (crittersIT = critters2.begin(); crittersIT != critters2.end(); crittersIT++) {
+        *crittersIT = new Critter();
+    }
+
 
     for (int i = 0; i < *CRITTER_COUNT; i++)
     {

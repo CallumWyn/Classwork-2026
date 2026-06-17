@@ -32,6 +32,10 @@ void Critter::Destroy()
 	m_isLoaded = false;
 }
 
+void Critter::SetLoadStatus(bool status) {
+	m_isLoaded = false;
+}
+
 void Critter::Update(float dt)
 {
 	if (m_isLoaded == false)
