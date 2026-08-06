@@ -25,6 +25,8 @@
 #include <time.h>
 #include "Critter.h"
 
+using namespace std;
+
 int main(int argc, char* argv[])
 {
     // Initialization
@@ -48,8 +50,8 @@ int main(int argc, char* argv[])
     const int* CRITTER_COUNT = new int(50);
     const int* MAX_VELOCITY = new int(80);
 
-    std::vector<Critter*> critters2(*CRITTER_COUNT);
-    std::vector<Critter*>::iterator crittersIT;
+    vector<Critter*> critters2(*CRITTER_COUNT);
+    vector<Critter*>::iterator crittersIT;
 
     for (crittersIT = critters2.begin(); crittersIT != critters2.end(); crittersIT++) {
         *crittersIT = new Critter();
